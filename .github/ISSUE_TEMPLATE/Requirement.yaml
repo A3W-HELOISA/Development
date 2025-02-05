@@ -1,1 +1,33 @@
+issue:
+  id: 12345
+  title: "Define and Document Project Requirements"
+  description: "Clarify and document the project requirements for the Earth observation system, ensuring all technical and functional requirements are captured."
+  priority: high
+  status: open
+  assignee: "John Doe"
+  reporter: "Jane Smith"
+  created_at: "2025-02-06T08:00:00Z"
+  due_date: "2025-02-20T17:00:00Z"
+  labels:
+    - "requirements"
+    - "documentation"
+  steps_to_reproduce:
+    - "Identify all stakeholders"
+    - "Collect functional and technical requirements"
+    - "Document requirements in a clear and structured format"
+  acceptance_criteria:
+    - "All technical and functional requirements are documented"
+    - "Stakeholder feedback is incorporated"
+    - "Document is reviewed and approved by the project manager"
+  comments:
+    - user: "John Doe"
+      date: "2025-02-06T10:00:00Z"
+      comment: "Started gathering requirements from key stakeholders."
+  attachments:
+    - filename: "requirements_template.docx"
+      url: "https://example.com/requirements_template.docx"
+  tags:
+    - "Earth Observation"
+    - "AI"
+    - "Water Quality Monitoring"
 
