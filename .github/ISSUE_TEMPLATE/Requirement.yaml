@@ -86,4 +86,3 @@ body:
       label: "Test results"
       description: "Record test results"
       placeholder: "Provide the test results"
-	  
