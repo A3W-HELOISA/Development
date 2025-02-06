@@ -40,7 +40,6 @@ body:
         - "2.1.3 Additional product information"
         - "2.1.4 Timeliness"
         - "2.1.5 Quality of Products"
-        - "2.1.4 Timeliness"
         - "2.2.1 Data Requirements"
         - "2.2.2 Hardware and Software Specifications"
   - type: dropdown
