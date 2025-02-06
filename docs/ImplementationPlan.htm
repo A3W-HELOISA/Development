@@ -1,0 +1,3496 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1253">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>Implementation Plan</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Noto Sans Symbols";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+h1
+	{mso-style-link:"Επικεφαλίδα 1 Char";
+	margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:18.0pt;
+	margin-left:36.0pt;
+	text-indent:-36.0pt;
+	page-break-before:always;
+	page-break-after:avoid;
+	border:none;
+	padding:0cm;
+	font-size:20.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+h2
+	{mso-style-link:"Επικεφαλίδα 2 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:36.0pt;
+	text-indent:-18.0pt;
+	page-break-after:avoid;
+	font-size:18.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+h3
+	{margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Arial",sans-serif;
+	color:#434343;
+	font-weight:normal;
+	text-decoration:underline;}
+h4
+	{margin-top:14.0pt;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:12.0pt;
+	font-family:"Arial",sans-serif;
+	color:#666666;
+	font-weight:normal;}
+h5
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;
+	color:#666666;
+	font-weight:normal;}
+h6
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:4.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;
+	color:#666666;
+	font-weight:normal;
+	font-style:italic;}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:5.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:5.0pt;
+	margin-left:11.0pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoToc3, li.MsoToc3, div.MsoToc3
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:5.0pt;
+	margin-left:22.0pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoCommentText, li.MsoCommentText, div.MsoCommentText
+	{mso-style-link:"Κείμενο σχολίου Char";
+	margin:0cm;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"Κεφαλίδα Char";
+	margin:0cm;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"Υποσέλιδο Char";
+	margin:0cm;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:26.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoSubtitle, li.MsoSubtitle, div.MsoSubtitle
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:16.0pt;
+	margin-left:0cm;
+	line-height:115%;
+	page-break-after:avoid;
+	font-size:15.0pt;
+	font-family:"Arial",sans-serif;
+	color:#666666;}
+a:link, span.MsoHyperlink
+	{color:navy;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+p.MsoCommentSubject, li.MsoCommentSubject, div.MsoCommentSubject
+	{mso-style-link:"Θέμα σχολίου Char";
+	margin:0cm;
+	font-size:10.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+span.MsoPlaceholderText
+	{color:#666666;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;}
+p.MsoTocHeading, li.MsoTocHeading, div.MsoTocHeading
+	{margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	line-height:107%;
+	page-break-after:avoid;
+	border:none;
+	padding:0cm;
+	font-size:11.0pt;
+	font-family:"Arial",sans-serif;
+	font-weight:bold;}
+span.Char
+	{mso-style-name:"Κεφαλίδα Char";
+	mso-style-link:Κεφαλίδα;}
+span.Char0
+	{mso-style-name:"Υποσέλιδο Char";
+	mso-style-link:Υποσέλιδο;}
+span.2Char
+	{mso-style-name:"Επικεφαλίδα 2 Char";
+	mso-style-link:"Επικεφαλίδα 2";
+	font-weight:bold;}
+span.Char1
+	{mso-style-name:"Κείμενο σχολίου Char";
+	mso-style-link:"Κείμενο σχολίου";}
+span.Char2
+	{mso-style-name:"Θέμα σχολίου Char";
+	mso-style-link:"Θέμα σχολίου";
+	font-weight:bold;}
+span.1Char
+	{mso-style-name:"Επικεφαλίδα 1 Char";
+	mso-style-link:"Επικεφαλίδα 1";
+	font-weight:bold;}
+.MsoChpDefault
+	{font-family:"Arial",sans-serif;}
+.MsoPapDefault
+	{line-height:115%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:595.45pt 841.7pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=navy vlink=purple style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal align=center style='text-align:center'>
+
+<table cellpadding=0 cellspacing=0 align=left>
+ <tr>
+  <td width=279 height=8></td>
+ </tr>
+ <tr>
+  <td></td>
+  <td><img width=178 height=61 src="ImplementationPlan.files/image001.gif"
+  alt="Text Box"></td>
+ </tr>
+</table>
+
+<span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN>&nbsp;</span></p>
+
+<br clear=ALL>
+
+<table class=aff6 border=1 cellspacing=0 cellpadding=0 width=601
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td width=180 style='width:134.7pt;border:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><span lang=EN>Deliverable:</span></p>
+  </td>
+  <td width=422 colspan=3 valign=top style='width:316.25pt;border:solid black 1.0pt;
+  border-left:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><b><span lang=EN>D-15
+  GNEO-PL-TTL-PM-1501 Project Implementation Plan</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=180 style='width:134.7pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><span lang=EN>Document
+  identification:</span></p>
+  </td>
+  <td width=422 colspan=3 valign=top style='width:316.25pt;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><b><span lang=EN>GNEO-PL-TTL-PM-1501</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:79.75pt'>
+  <td width=180 style='width:134.7pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt;height:79.75pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><span lang=EN>Submitted by: </span></p>
+  </td>
+  <td width=422 colspan=3 valign=top style='width:316.25pt;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt;height:79.75pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><img width=152 height=46
+  src="ImplementationPlan.files/image002.jpg" align=left hspace=12>
+  <table cellpadding=0 cellspacing=0>
+   <tr>
+    <td width=353 height=0></td>
+   </tr>
+   <tr>
+    <td></td>
+    <td><img width=74 height=71 src="ImplementationPlan.files/image003.gif"></td>
+   </tr>
+  </table>
+  <br clear=ALL>
+  </p>
+  </td>
+ </tr>
+ <tr>
+  <td width=180 style='width:134.7pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><span lang=EN>In collaboration
+  with:</span></p>
+  </td>
+  <td width=422 colspan=3 valign=top style='width:316.25pt;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'>
+  <table cellpadding=0 cellspacing=0>
+   <tr>
+    <td width=67 height=0></td>
+   </tr>
+   <tr>
+    <td></td>
+    <td><img width=94 height=75 src="ImplementationPlan.files/image004.gif"></td>
+   </tr>
+  </table>
+  <br clear=ALL>
+  <span style='position:absolute;z-index:251662336;margin-left:192px;
+  margin-top:130px;width:171px;height:46px'><img width=137 height=37
+  src="ImplementationPlan.files/image005.jpg"></span>
+  <table cellpadding=0 cellspacing=0>
+   <tr>
+    <td width=371 height=0></td>
+   </tr>
+   <tr>
+    <td></td>
+    <td><img width=134 height=68 src="ImplementationPlan.files/image006.jpg"></td>
+   </tr>
+  </table>
+  <br clear=ALL>
+  </p>
+  </td>
+ </tr>
+ <tr style='height:21.05pt'>
+  <td width=180 style='width:134.7pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt;height:21.05pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><span lang=EN>ESA Contract No.:</span></p>
+  </td>
+  <td width=422 colspan=3 valign=top style='width:316.25pt;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt;height:21.05pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><b><span lang=EN>4000145363/24/NL/Ffi</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:21.05pt'>
+  <td width=180 style='width:134.7pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt;height:21.05pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><span lang=EN>ESA Reference:</span></p>
+  </td>
+  <td width=422 colspan=3 valign=top style='width:316.25pt;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt;height:21.05pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><b><span lang=EN>GNEO-SOW-ESA-PM-0011</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=180 style='width:134.7pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><span lang=EN>Project title:</span></p>
+  </td>
+  <td width=422 colspan=3 valign=top style='width:316.25pt;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><b><span lang=EN>Greek National
+  Satellite Space Project: </span></b></p>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><b><span lang=EN>Axis 3 Water
+  Monitoring Service</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=180 style='width:134.7pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><span lang=EN>Current Version:</span></p>
+  </td>
+  <td width=94 valign=top style='width:70.85pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><b><span lang=EN>2.0</span></b></p>
+  </td>
+  <td width=76 valign=top style='width:2.0cm;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><span lang=EN>Status:</span></p>
+  </td>
+  <td width=252 valign=top style='width:188.7pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><b><span lang=EN>Submitted for
+  Approval</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=180 style='width:134.7pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><span lang=EN>Prepared by:</span></p>
+  </td>
+  <td width=422 colspan=3 valign=top style='width:316.25pt;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><b><span lang=EN>George Keradinidis</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=180 style='width:134.7pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><span lang=EN>Approved by:</span></p>
+  </td>
+  <td width=422 colspan=3 valign=top style='width:316.25pt;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><b><span lang=EN>Vasiliki Giavi</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=180 style='width:134.7pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><span lang=EN>&nbsp;</span></p>
+  </td>
+  <td width=422 colspan=3 valign=top style='width:316.25pt;border-top:none;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm;line-height:normal'><b><span lang=EN>ESA UNCLASSIFIED –
+  For ESA Official Use Only</span></b></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><b><span lang=EN>&nbsp;</span></b></p>
+
+<span lang=EN style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'><br
+clear=all style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal><b><span lang=EN>&nbsp;</span></b></p>
+
+<div style='border:none;border-bottom:solid black 1.0pt;padding:31.0pt 31.0pt 1.0pt 31.0pt;
+margin-left:3.3pt;margin-right:0cm'>
+
+<p class=MsoNormal align=center style='margin-top:12.0pt;margin-right:0cm;
+margin-bottom:12.0pt;margin-left:18.0pt;text-align:center;text-indent:-18.0pt;
+line-height:107%;page-break-after:avoid;border:none;padding:0cm'><b><span
+lang=EN style='color:black'>Table of contents</span></b></p>
+
+</div>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<p class=MsoTocHeading>&nbsp;</p>
+
+</div>
+
+<p class=MsoToc1><span lang=EN><a href="#_Toc189213835">1.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>      </span>Document properties<span
+style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>3</span></a></span></p>
+
+<p class=MsoToc2><span lang=EN><a href="#_Toc189213836">1.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>       </span>Version history<span
+style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>3</span></a></span></p>
+
+<p class=MsoToc2><span lang=EN><a href="#_Toc189213837">2.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>       </span>Reference documents<span
+style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>3</span></a></span></p>
+
+<p class=MsoToc2><span lang=EN><a href="#_Toc189213838">3.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>       </span>Acronyms<span
+style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>3</span></a></span></p>
+
+<p class=MsoToc2><span lang=EN><a href="#_Toc189213839">4.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>       </span>Executive summary<span
+style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>4</span></a></span></p>
+
+<p class=MsoToc3><span lang=EN><a href="#_Toc189213840">Key Components:<span
+style='color:windowtext;display:none;text-decoration:none'> </span><span
+style='color:windowtext;display:none;text-decoration:none'>4</span></a></span></p>
+
+<p class=MsoToc3><span lang=EN><a href="#_Toc189213841">Purpose and Importance:<span
+style='color:windowtext;display:none;text-decoration:none'> </span><span
+style='color:windowtext;display:none;text-decoration:none'>4</span></a></span></p>
+
+<p class=MsoToc3><span lang=EN><a href="#_Toc189213842">Usage:<span
+style='color:windowtext;display:none;text-decoration:none'> </span><span
+style='color:windowtext;display:none;text-decoration:none'>4</span></a></span></p>
+
+<p class=MsoToc1><span lang=EN><a href="#_Toc189213843">1.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>      </span>Schedule<span
+style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>5</span></a></span></p>
+
+<p class=MsoToc2><span lang=EN><a href="#_Toc189213844">a.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>       </span>Gantt Chart<span
+style='color:windowtext;display:none;text-decoration:none'> </span><span
+style='color:windowtext;display:none;text-decoration:none'>6</span></a></span></p>
+
+<p class=MsoToc1><span lang=EN><a href="#_Toc189213845">2.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>      </span>Implementation Strategy<span
+style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>7</span></a></span></p>
+
+<p class=MsoToc2><span lang=EN><a href="#_Toc189213846">a.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>       </span>Work Breakdown Structure
+of HELOISA<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>7</span></a></span></p>
+
+<p class=MsoToc2><span lang=EN><a href="#_Toc189213847">b.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>       </span>Work package details<span
+style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>9</span></a></span></p>
+
+<p class=MsoToc1><span lang=EN><a href="#_Toc189213848">3.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>      </span>Long Lead items<span
+style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>15</span></a></span></p>
+
+<p class=MsoToc1><span lang=EN><a href="#_Toc189213849">4.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>      </span>External Dependencies<span
+style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>17</span></a></span></p>
+
+<p class=MsoToc1><span lang=EN><a href="#_Toc189213850">5.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>      </span>Quality Standards and
+Assurance<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>18</span></a></span></p>
+
+<p class=MsoToc1><span lang=EN><a href="#_Toc189213851">6.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>      </span>Resource Requirements,
+Roles and Responsibilities<span style='color:windowtext;display:none;
+text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>19</span></a></span></p>
+
+<p class=MsoToc1><span lang=EN><a href="#_Toc189213852">7.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>      </span>Facilities<span
+style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>21</span></a></span></p>
+
+<p class=MsoToc2><span lang=EN><a href="#_Toc189213853">a.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>       </span>Description of TotalView
+facilities used<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>21</span></a></span></p>
+
+<p class=MsoToc2><span lang=EN><a href="#_Toc189213854">b.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>       </span>Description of ICCS
+facilities used<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>21</span></a></span></p>
+
+<p class=MsoToc2><span lang=EN><a href="#_Toc189213855">c.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>       </span>Description of CDXi
+Solutions facilities<span style='color:windowtext;display:none;text-decoration:
+none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>21</span></a></span></p>
+
+<p class=MsoToc2><span lang=EN><a href="#_Toc189213856">d.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>       </span>Description of KEMEA
+facilities used<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>22</span></a></span></p>
+
+<p class=MsoToc2><span lang=EN><a href="#_Toc189213857">e.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>       </span>Description of EYATH
+facilities used<span style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>23</span></a></span></p>
+
+<p class=MsoToc2><span lang=EN><a href="#_Toc189213858">f.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>        </span>Means of access to
+information resources<span style='color:windowtext;display:none;text-decoration:
+none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>23</span></a></span></p>
+
+<p class=MsoToc2><span lang=EN><a href="#_Toc189213859">g.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>       </span>Test Facilities<span
+style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>24</span></a></span></p>
+
+<p class=MsoToc2><span lang=EN><a href="#_Toc189213860">h.<span lang=EN-US
+style='font-size:12.0pt;line-height:115%;font-family:"Cambria",serif;
+color:windowtext;text-decoration:none'>       </span>Public cloud resources<span
+style='color:windowtext;display:none;text-decoration:none'>. </span><span
+style='color:windowtext;display:none;text-decoration:none'>24</span></a></span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<span lang=EN style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'><br
+clear=all style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal><b><span lang=EN>&nbsp;</span></b></p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h1><a name="_Toc189213835"><span lang=EN>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>Document properties</span></a></h1>
+
+</div>
+
+<h2 style='margin-left:18.0pt'><a name="_Toc189213836"><span lang=EN>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN>Version
+history</span></a></h2>
+
+<table class=aff7 border=1 cellspacing=0 cellpadding=0 width=604
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td width=66 valign=top style='width:49.4pt;border:solid black 1.0pt;
+  background:#BFBFBF;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='color:
+  black'>Version</span></p>
+  </td>
+  <td width=104 valign=top style='width:77.95pt;border:solid black 1.0pt;
+  border-left:none;background:#BFBFBF;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='color:
+  black'>Date</span></p>
+  </td>
+  <td width=180 valign=top style='width:134.65pt;border:solid black 1.0pt;
+  border-left:none;background:#BFBFBF;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='color:
+  black'>Contributors</span></p>
+  </td>
+  <td width=255 valign=top style='width:191.35pt;border:solid black 1.0pt;
+  border-left:none;background:#BFBFBF;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='color:
+  black'>Remarks</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=66 valign=top style='width:49.4pt;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>1.0</span></p>
+  </td>
+  <td width=104 valign=top style='width:77.95pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>15/10/2024</span></p>
+  </td>
+  <td width=180 valign=top style='width:134.65pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>TotalView</span></p>
+  </td>
+  <td width=255 valign=top style='width:191.35pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Submitted for
+  Approval</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=66 valign=top style='width:49.4pt;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>2.0</span></p>
+  </td>
+  <td width=104 valign=top style='width:77.95pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>29/01/2025</span></p>
+  </td>
+  <td width=180 valign=top style='width:134.65pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>TotalView</span></p>
+  </td>
+  <td width=255 valign=top style='width:191.35pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Updates, based on
+  KCP#1 RIDs</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<h2 style='margin-left:18.0pt'><a name="_Toc189213837"><span lang=EN>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN>Reference
+documents</span></a></h2>
+
+<table class=aff8 border=1 cellspacing=0 cellpadding=0 width=604
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td width=104 valign=top style='width:77.75pt;border:solid black 1.0pt;
+  background:#BFBFBF;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='color:
+  black'>Deliverable id</span></p>
+  </td>
+  <td width=501 valign=top style='width:375.6pt;border:solid black 1.0pt;
+  border-left:none;background:#BFBFBF;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='color:
+  black'>Name</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=104 valign=top style='width:77.75pt;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  </td>
+  <td width=501 valign=top style='width:375.6pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=104 valign=top style='width:77.75pt;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  </td>
+  <td width=501 valign=top style='width:375.6pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<h2 style='margin-left:18.0pt'><a name="_Toc189213838"><span lang=EN>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN>Acronyms</span></a></h2>
+
+<table class=aff9 border=1 cellspacing=0 cellpadding=0 width=604
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td width=104 valign=top style='width:77.75pt;border:solid black 1.0pt;
+  background:#BFBFBF;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='color:
+  black'>Acronym</span></p>
+  </td>
+  <td width=501 valign=top style='width:375.6pt;border:solid black 1.0pt;
+  border-left:none;background:#BFBFBF;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='color:
+  black'>Name</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=104 valign=top style='width:77.75pt;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>TLV</span></p>
+  </td>
+  <td width=501 valign=top style='width:375.6pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>TotalView</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=104 valign=top style='width:77.75pt;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>ICS</span></p>
+  </td>
+  <td width=501 valign=top style='width:375.6pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>ICCS</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=104 valign=top style='width:77.75pt;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>CDX</span></p>
+  </td>
+  <td width=501 valign=top style='width:375.6pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>CDXi</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=104 valign=top style='width:77.75pt;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>EYA</span></p>
+  </td>
+  <td width=501 valign=top style='width:375.6pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>EYATH</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=104 valign=top style='width:77.75pt;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>KEM</span></p>
+  </td>
+  <td width=501 valign=top style='width:375.6pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>KEMEA</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=104 valign=top style='width:77.75pt;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>LEV</span></p>
+  </td>
+  <td width=501 valign=top style='width:375.6pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Lever</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=104 valign=top style='width:77.75pt;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  </td>
+  <td width=501 valign=top style='width:375.6pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=104 valign=top style='width:77.75pt;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  </td>
+  <td width=501 valign=top style='width:375.6pt;border-top:none;border-left:
+  none;border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<span lang=EN style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'><br
+clear=all style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal><b><span lang=EN style='font-size:18.0pt;line-height:115%'>&nbsp;</span></b></p>
+
+<h2 style='margin-left:18.0pt'><a name="_Toc189213839"><span lang=EN>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN>Executive
+summary</span></a></h2>
+
+<h3 style='margin-top:3.0pt'><a name="_Toc189213840"><span lang=EN>Key
+Components:</span></a></h3>
+
+<p class=MsoNormal style='margin-top:3.0pt'><span lang=EN style='font-size:
+12.0pt;line-height:115%'>Schedule: Timeline for implementing each aspect of the
+project.</span></p>
+
+<p class=MsoNormal style='margin-top:3.0pt'><span lang=EN style='font-size:
+12.0pt;line-height:115%'>Implementation Strategy: Detailed plan for
+implementing project activities and deliverables.</span></p>
+
+<p class=MsoNormal style='margin-top:3.0pt'><span lang=EN style='font-size:
+12.0pt;line-height:115%'>Resource Requirements: Resources needed for
+implementation.</span></p>
+
+<p class=MsoNormal style='margin-top:3.0pt'><span lang=EN style='font-size:
+12.0pt;line-height:115%'>Roles and Responsibilities: Assignments of
+responsibilities for implementation tasks.</span></p>
+
+<p class=MsoNormal style='margin-top:3.0pt'><span lang=EN style='font-size:
+12.0pt;line-height:115%'>Facilities: List of partners facilities to be utilized
+in the project.</span></p>
+
+<h3 style='margin-top:3.0pt'><a name="_Toc189213841"><span lang=EN>Purpose and
+Importance:</span></a></h3>
+
+<p class=MsoNormal style='margin-top:3.0pt'><span lang=EN style='font-size:
+12.0pt;line-height:115%'>Execution Guidance: Provides a clear plan for
+executing project activities.</span></p>
+
+<p class=MsoNormal style='margin-top:3.0pt'><span lang=EN style='font-size:
+12.0pt;line-height:115%'>Resource Coordination: Ensures that resources are
+available and allocated appropriately.</span></p>
+
+<p class=MsoNormal style='margin-top:3.0pt'><span lang=EN style='font-size:
+12.0pt;line-height:115%'>Implementation Monitoring: Helps in tracking the
+implementation process.</span></p>
+
+<h3 style='margin-top:3.0pt'><a name="_Toc189213842"><span lang=EN>Usage:</span></a></h3>
+
+<p class=MsoNormal style='margin-top:3.0pt'><span lang=EN style='font-size:
+12.0pt;line-height:115%'>Used to guide the execution of project activities,
+ensuring that all aspects of the project are implemented according to plan.</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><b><span lang=EN>&nbsp;</span></b></p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h1><a name="_Toc189213843"><span lang=EN>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>Schedule</span></a></h1>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN>The Project
+duration is driven by the completion date as governed by the Greek component of
+the EU Recovery and Resilience Facility (RRF) with the CFAR being successfully
+completed <b>by end June 2026</b>. </span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN>Table
+1: List of project milestones</span></p>
+
+<table class=affa border=1 cellspacing=0 cellpadding=0 width=600
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td width=188 style='width:141.25pt;border:solid black 1.0pt;background:#A6A6A6;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none'><b><span lang=EN
+  style='color:black'>Milestones</span></b></p>
+  </td>
+  <td width=246 style='width:184.3pt;border:solid black 1.0pt;border-left:none;
+  background:#A6A6A6;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none'><b><span lang=EN
+  style='color:black'>Reference</span></b></p>
+  </td>
+  <td width=166 style='width:124.45pt;border:solid black 1.0pt;border-left:
+  none;background:#A6A6A6;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><b><span lang=EN style='color:black'>Time</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=600 colspan=3 style='width:450.0pt;border:solid black 1.0pt;
+  border-top:none;background:#BFBFBF;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none'><b><span lang=EN
+  style='color:black'>Milestones from Agency</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=188 style='width:141.25pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none'><span lang=EN
+  style='font-size:9.0pt'>Project Kick-Off (KO)</span></p>
+  </td>
+  <td width=246 style='width:184.3pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='font-size:
+  9.0pt'>SoW - Section 4.2.3, table 1</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='font-size:
+  9.0pt'>SoW - Section 7, table 3</span></p>
+  </td>
+  <td width=166 style='width:124.45pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN style='font-size:9.0pt'>M0</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=188 style='width:141.25pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none'><span lang=EN
+  style='font-size:9.0pt'>Progress meetings </span></p>
+  <p class=MsoNormal style='line-height:normal;border:none'><span lang=EN
+  style='font-size:9.0pt'>(P1 - P11)</span></p>
+  </td>
+  <td width=246 style='width:184.3pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='font-size:
+  8.5pt'>SoW - Section 6.3.9, GNEO-SOW-99</span></p>
+  </td>
+  <td width=166 style='width:124.45pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='font-size:9.0pt'>Every 6 weeks</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=188 style='width:141.25pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none'><span lang=EN
+  style='font-size:9.0pt'>Meetings with Stakeholders (MwS)</span></p>
+  </td>
+  <td width=246 style='width:184.3pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='font-size:
+  9.0pt'>SoW - Section 4.2, </span><span lang=EN style='font-size:8.5pt'>GNEO-SOW-21</span></p>
+  </td>
+  <td width=166 style='width:124.45pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='font-size:9.0pt'>As requested from ESA and HSC</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=188 style='width:141.25pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none'><span lang=EN
+  style='font-size:9.0pt;background:white'>Key Check Point #1 (KCP#1)</span></p>
+  </td>
+  <td width=246 style='width:184.3pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='font-size:
+  9.0pt'>SoW - Section 4.2, </span><span lang=EN style='font-size:8.5pt'>GNEO-SOW-21</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='font-size:
+  9.0pt'>SoW - Section 4.2.3.1, </span><span lang=EN style='font-size:8.5pt'>GNEO-SOW-55</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='font-size:
+  9.0pt'>SoW - Section 7, table 3</span></p>
+  </td>
+  <td width=166 style='width:124.45pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><span lang=EN style='font-size:9.0pt'>M4</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=188 style='width:141.25pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none'><span lang=EN
+  style='font-size:9.0pt;background:white'>Key Check Point #2 (KCP#2)</span></p>
+  </td>
+  <td width=246 style='width:184.3pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='font-size:
+  9.0pt'>SoW - Section 4.2.3.2, </span><span lang=EN style='font-size:8.5pt'>GNEO-SOW-56</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='font-size:
+  9.0pt'>SoW - Section 7, table 3</span></p>
+  </td>
+  <td width=166 style='width:124.45pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><span lang=EN style='font-size:9.0pt'>M7</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=188 style='width:141.25pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none'><span lang=EN
+  style='font-size:9.0pt;background:white'>Key Check Point #3 (KCP#3)</span></p>
+  </td>
+  <td width=246 style='width:184.3pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='font-size:
+  9.0pt'>SoW - Section 4.2.3.3, </span><span lang=EN style='font-size:8.5pt'>GNEO-SOW-57</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='font-size:
+  9.0pt'>SoW - Section 7, table 3</span></p>
+  </td>
+  <td width=166 style='width:124.45pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><span lang=EN style='font-size:9.0pt'>M12</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=188 style='width:141.25pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none'><span lang=EN
+  style='font-size:9.0pt;background:white'>Preliminary Acceptance Review (PAR)</span></p>
+  </td>
+  <td width=246 style='width:184.3pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='font-size:
+  9.0pt'>SoW - Section 4.2, </span><span lang=EN style='font-size:8.5pt'>GNEO-SOW-21</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='font-size:
+  9.0pt'>SoW - Section 4.2.3.4, </span><span lang=EN style='font-size:8.5pt'>GNEO-SOW-58</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='font-size:
+  9.0pt'>SoW - Section 7, table 3</span></p>
+  </td>
+  <td width=166 style='width:124.45pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><span lang=EN style='font-size:9.0pt'>M18</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=188 style='width:141.25pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none'><span lang=EN
+  style='font-size:9.0pt;background:white'>Final Acceptance / CFAR Close-Out / Contract
+  Closure</span></p>
+  </td>
+  <td width=246 style='width:184.3pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='font-size:
+  9.0pt'>SoW - Section 4.2.3.5, </span><span lang=EN style='font-size:8.5pt'>GNEO-SOW-60</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='font-size:
+  9.0pt'>SoW - Section 7, table 3</span></p>
+  </td>
+  <td width=166 style='width:124.45pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><span lang=EN style='font-size:9.0pt'>M24</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=600 colspan=3 style='width:450.0pt;border:solid black 1.0pt;
+  border-top:none;background:#BFBFBF;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none'><b><span lang=EN
+  style='color:black'>Milestones from Prime Contractor</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=188 style='width:141.25pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none'><span lang=EN
+  style='font-size:9.0pt;background:white'>Payment milestones</span></p>
+  </td>
+  <td width=246 style='width:184.3pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='font-size:
+  9.0pt'>Special conditions - section F.5</span></p>
+  </td>
+  <td width=166 style='width:124.45pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><span lang=EN style='font-size:9.0pt'>Following Project
+  milestones (KCP#1-3, PAR, CFAR) and Advance Prepayment</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=600 colspan=3 style='width:450.0pt;border:solid black 1.0pt;
+  border-top:none;background:#BFBFBF;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none'><b><span lang=EN
+  style='color:black'>Milestones from subcontractors</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=188 style='width:141.25pt;border:solid black 1.0pt;border-top:none;
+  padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='font-size:
+  9.0pt;background:white'>Payment milestones</span></p>
+  </td>
+  <td width=246 style='width:184.3pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN style='font-size:
+  9.0pt'>Special conditions - section F.5</span></p>
+  </td>
+  <td width=166 style='width:124.45pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><span lang=EN style='font-size:9.0pt'>Following Project
+  milestones (KCP#1-3, PAR, CFAR) and Advance Prepayment</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN>Related to the
+project schedule requirements stemming from the SoW (e.g. <span
+style='color:fuchsia'>GNEO-SOW-68</span>), have been taken into account during
+the drafting of the project timeline. </span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN>As defined in <span
+style='color:fuchsia'>GNEO-SOW-85</span>, in addition to the overall project
+schedule, a further detailed Project schedule with minimum bi-weekly
+granularity tracking the progress of the activities, and showing the planning
+for the next reporting period, of all parts of the consortium, to be updated
+and presented at each Project Progress Meeting is monitored in a Microsoft
+Project file. </span></p>
+
+<h2 style='margin-left:18.0pt'><a name="_Toc189213844"><span lang=EN>a.<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN>Gantt
+Chart</span></a></h2>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN><img
+width=399 height=786 id=image8.png src="ImplementationPlan.files/image007.jpg"></span></p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h1><a name="_Toc189213845"><span lang=EN>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>Implementation Strategy</span></a></h1>
+
+</div>
+
+<p class=MsoNormal><span lang=EN>The Work breakdown structure is presented in
+the following table and also in the figure below it.</span></p>
+
+<h2 style='margin-left:18.0pt'><a name="_Toc189213846"><span lang=EN>a.<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN>Work
+Breakdown Structure of HELOISA</span></a></h2>
+
+<table class=affb border=1 cellspacing=0 cellpadding=0 width=602
+ style='border-collapse:collapse;border:none'>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;background:#A6A6A6;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal;
+  border:none'><b><span lang=EN style='color:black'>ID</span></b></p>
+  </td>
+  <td width=403 style='width:302.15pt;border:solid black 1.0pt;border-left:
+  none;background:#A6A6A6;padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>Tasks</span></b></p>
+  </td>
+  <td width=76 style='width:2.0cm;border:solid black 1.0pt;border-left:none;
+  background:#A6A6A6;padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>Leader</span></b></p>
+  </td>
+  <td width=83 style='width:61.9pt;border:solid black 1.0pt;border-left:none;
+  background:#A6A6A6;padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>Co-Leader</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  background:#BFBFBF;padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>100</span></b></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;background:
+  #BFBFBF;padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>Project Management and Coordination</span></b></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;background:#BFBFBF;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>TotalView</span></b></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;background:#BFBFBF;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>ICCS</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>110</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Project
+  Administration and overall quality assurance</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>TotalView</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>ICCS</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>120</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Technical
+  Management and agile monitoring</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>TotalView</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>ICCS</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>130</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Ethical and Risk
+  Management, compliance with regulations, GDPR and policies</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>KEMEA</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>ICCS</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>140</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Coordination with
+  Axis 1 and Axis 2</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>TotalView</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>ICCS</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  background:#BFBFBF;padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>200</span></b></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;background:
+  #BFBFBF;padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>System definition and technical specifications</span></b></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;background:#BFBFBF;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>TotalView</span></b></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;background:#BFBFBF;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>ICCS</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>210</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>System
+  requirements and analysis of legacy systems in the water sector</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>TotalView</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>EYATH</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>220</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>User, functional
+  and security requirements elicitation</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>KEMEA</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>TotalView</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>230</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Definition of
+  system architecture and connection to Governmental Hub</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>TotalView</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>ICCS</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>240</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Development of
+  validation, verification and evaluation plan</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>TotalView</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>CDXi</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>250</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Data and computational
+  resources estimation</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>TotalView</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>CDXi</span></p>
+  </td>
+ </tr>
+ <tr style='height:18.0pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  background:#BFBFBF;padding:0cm 2.0pt 0cm 2.0pt;height:18.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>300</span></b></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;background:
+  #BFBFBF;padding:0cm 2.0pt 0cm 2.0pt;height:18.0pt'>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>Component design and development for the Axis 3 Water
+  Monitoring Service</span></b></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;background:#BFBFBF;
+  padding:0cm 2.0pt 0cm 2.0pt;height:18.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>ICCS</span></b></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;background:#BFBFBF;
+  padding:0cm 2.0pt 0cm 2.0pt;height:18.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>CDXi</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>310</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Component design
+  and development for the Axis 3 Water Quantity Monitoring Service</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>TotalView</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>ICCS</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.0pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>320</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Component design
+  and development for the Axis 3 Water Quality Monitoring Service</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>CDXi</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>EYATH</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.0pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>330</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.0pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Component design
+  and development for the Axis 3 Maritime Surveillance Service</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>ICCS</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.0pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>KEMEA</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  background:#BFBFBF;padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>400</span></b></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;background:
+  #BFBFBF;padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>Axis 3 platform Integration and algorithmic automation</span></b></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;background:#BFBFBF;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>CDXi</span></b></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;background:#BFBFBF;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>ICCS</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>410</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Algorithmic
+  automation services (code ready to integrate and deploy)</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>CDXi</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>ICCS</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>420</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Software User and
+  Installation Manual (per service)</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>CDXi</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>ICCS</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>430</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>System
+  development, integration and interoperability analysis</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>CDXi</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>ICCS</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>440</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Cyber Security
+  and security risk assessment</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>KEMEA</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>ICCS</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  background:#BFBFBF;padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>500</span></b></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;background:
+  #BFBFBF;padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>Pre-operational testing and validation</span></b></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;background:#BFBFBF;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>TotalView</span></b></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;background:#BFBFBF;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>EYATH/</span></b></p>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>KEMEA</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:16.5pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:16.5pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>510</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:16.5pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Verification of
+  the validation scenario and evaluation plan</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:16.5pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>TotalView</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:16.5pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>EYATH/</span></p>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>KEMEA</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>520</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Verification of
+  all performance parameters</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>TotalView</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>EYATH/</span></p>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>KEMEA</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>530</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Stakeholder
+  engagement for user feedback collection</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>TotalView</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>EYATH/</span></p>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>KEMEA</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  background:#BFBFBF;padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>600</span></b></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;background:
+  #BFBFBF;padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>Operational Axis 3 Water Monitoring Service</span></b></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;background:#BFBFBF;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>TotalView</span></b></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;background:#BFBFBF;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><b><span
+  lang=EN style='color:black'>ICCS</span></b></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>610</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Execution of Axes
+  3 Water Monitoring Service</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>TotalView</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>ICCS</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>620</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Training on Water
+  utility operators and civil protection agencies</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>CDXi</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:15.75pt'>
+  <td width=41 style='width:30.75pt;border:solid black 1.0pt;border-top:none;
+  padding:0cm 2.0pt 0cm 2.0pt;height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>630</span></p>
+  </td>
+  <td width=403 style='width:302.15pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>Business
+  continuity and service sustainability</span></p>
+  </td>
+  <td width=76 style='width:2.0cm;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>TotalView</span></p>
+  </td>
+  <td width=83 style='width:61.9pt;border-top:none;border-left:none;border-bottom:
+  solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 2.0pt 0cm 2.0pt;
+  height:15.75pt'>
+  <p class=MsoNormal align=center style='text-align:center;line-height:normal'><span
+  lang=EN>CDXi</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN><img
+width=602 height=424 id=image6.png src="ImplementationPlan.files/image008.gif"></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><i><span lang=EN>Figure
+2: WBS diagram of Project Heloisa. The colours refer to the leader of each WP
+and<span style='color:blue'> </span>for each task inside each WP.</span></i></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN>Below, for each WP,
+the Work Breakdown Description (WBD) table presents the objective of the WP,
+the required inputs, detailed subtasks description of the work to be executed,
+and the planned outputs.</span></p>
+
+<span lang=EN style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'><br
+clear=all style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<h2 style='margin-left:18.0pt'><a name="_Toc189213847"><span lang=EN>b.<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN>Work package
+details</span></a></h2>
+
+<table class=affc border=1 cellspacing=0 cellpadding=0 width=605
+ style='margin-left:-.25pt;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=605 valign=top style='width:16.0cm;border:solid black 1.0pt;
+  background:#BFBFBF;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>WP100 - Project Management and Coordination</span></b></p>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>PHASE: System Definition</span></b></p>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>WP Manager: TotalView</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=605 valign=top style='width:16.0cm;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Objectives: </span></b></p>
+  </div>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Ensure effective project administration and
+  overall quality assurance.</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Oversee technical management and agile monitoring.</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Manage ethical considerations, risk, compliance
+  with regulations, GDPR.</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>To achieve project milestones within the
+  stipulated timeline</span></p>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Inputs</span></b><span lang=EN>:</span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Statement of Work documents</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Project Charter and Objectives</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Regulatory Compliance Guidelines</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Stakeholder Requirements and Agreements</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Project Schedule and Milestones</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Risk Management Plan</span></p>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Tasks</span></b><span lang=EN>:</span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>110: Project Administration and overall quality assurance</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN style='font-size:10.0pt'>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Oversee all administrative activities related to
+  project execution.</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN style='font-size:10.0pt'>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Implement quality assurance protocols to ensure
+  project deliverables meet specified standards.</span></p>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>120: Technical Management and agile monitoring</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Conduct technical management to ensure the
+  project aligns with the technical requirements.</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Implement agile monitoring techniques to adapt
+  and respond to project changes effectively.</span></p>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>130: Ethical and Risk Management, compliance with regulations, GDPR
+  and policies</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Ensure compliance with ethical standards, GDPR,
+  and relevant policies.</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Implement risk management strategies to identify,
+  assess, and mitigate project risks.</span></p>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>140: Coordination with Axis 1 and Axis 2</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Facilitate collaboration and communication with
+  stakeholders from Axis 1 and Axis 2 projects.</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Collaborate with teams handling Thermal, SAR and
+  Optical Space Segments</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Synchronize efforts to enhance project
+  integration and performance</span></p>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Outputs</span></b><span lang=EN>:</span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Project Management Plan (D-05)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Risk Management Plan (D1.3)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Compliance Reports and Documentation (e.g., GDPR
+  compliance)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Status and Progress Reports (D-06)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Meeting Minutes and Coordination Reports (D-07)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Action Item List (D-08)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Document Status List (D-9)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Project Schedule (D-13)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Risk Registry (D-14)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>PA/QA Plan (D-20)</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=605 valign=top style='width:16.0cm;border:solid black 1.0pt;
+  border-top:none;background:#BFBFBF;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>WP200 - System definition and technical specifications</span></b></p>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>PHASE: System Definition</span></b></p>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>WP Manager: TotalView</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=605 valign=top style='width:16.0cm;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Objectives</span></b><span lang=EN>: </span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  115%;border:none'><span lang=EN style='font-family:"Noto Sans Symbols";
+  color:black'>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN style='color:black'>Define the HELOISA project's
+  system requirements and technical specifications, ensuring alignment with
+  end-user needs, budgetary constraints, and regulatory standards to establish
+  a solid foundation for the design and implementation phases.</span></p>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Inputs</span></b><span lang=EN>:</span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Statement of Work (SoW): Detailed project scope,
+  milestones, and task descriptions</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>End User Requirements: Specific needs and
+  expectations gathered from consultations facilitated by ESA and the Greek
+  government</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Technical Standards and Guidelines: Regulatory
+  and compliance requirements for the water monitoring system</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Legacy System Analysis: Assessment of existing
+  water monitoring systems and integration requirements</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Data Sources: Identification of data to be used
+  from Axis 1.1, Axis 1.2, Axis 2, and external sources</span></p>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Tasks</span></b><span lang=EN>:</span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>210 System requirements and analysis of legacy systems in the water
+  sector:</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Conduct a thorough analysis of existing systems
+  to identify compatibility and integration requirements</span></p>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>220 User, functional and security requirements elicitation:</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Gather and define the user, functional, and
+  security requirements through stakeholder consultations and requirements
+  elicitation sessions</span></p>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>230 Definition of system architecture and connection to Governmental
+  Hub:</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Design the system architecture, ensuring seamless
+  integration with the Governmental Hub and existing infrastructure.</span></p>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>240 Development of validation, verification and evaluation plan:</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Create a comprehensive plan outlining testing
+  procedures, validation methods, and evaluation criteria to ensure system
+  reliability and performance</span></p>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>250 Data and computational resources estimation:</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Assess and estimate the computational power,
+  memory, and data resources required for the HELOISA project, ensuring
+  alignment with project constraints</span></p>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Outputs</span></b><span lang=EN>:</span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>System Requirements Specification (SRS): Detailed
+  documentation of the system requirements derived from user needs and legacy
+  system analysis. (D-21)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Preliminary Architectural Design Document:
+  Functional model and design of the system architecture. (D-23, D-24, D-25)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Validation, Verification, and Evaluation Plan:
+  Comprehensive plan detailing the methods and criteria for system testing and
+  validation. (D-17)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Resource Estimation Report: Detailed estimation
+  of the computational and data resources required for the system. (D-14, D-20)</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=605 valign=top style='width:16.0cm;border:solid black 1.0pt;
+  border-top:none;background:#BFBFBF;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>WP300 - Component design and development for the Axis 3
+  Water Mon. Service</span></b></p>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>PHASE: Design and Implementation</span></b></p>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>WP Manager: ICCS</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=605 valign=top style='width:16.0cm;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Objectives</span></b><span lang=EN>: </span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  115%;border:none'><span lang=EN style='font-family:"Noto Sans Symbols";
+  color:black'>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN style='color:black'>Design and develop the
+  relevant products of the three components for the Axis 3 Water Monitoring
+  Service</span></p>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Inputs</span></b><span lang=EN>:</span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Satellite data from Axes 1.1, 1.2, 2, as well as
+  3rd party data (e.g., Copernicus, Landsat etc.)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Public DL and any relevant models (e.g.,
+  Foundation models for Sentinel data)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Public benchmark datasets for DL</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>State-of-the-art software and analytical tools
+  for remote sensing data operations and analysis</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Algorithms derived from state-of-the-art
+  literature in the relevant field of water EO-based monitoring as stated in
+  the Algorithm Theoretical Baseline Definition (ATBD)</span></p>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Tasks</span></b><span lang=EN>:</span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>310: Water Quantity Monitoring</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Mapping of water extent changes relevant to rapid
+  and slow geohazards such as floods and coastal erosion</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Mapping of long-term (e.g., hydroperiod) and
+  current state of inland water extent</span></p>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>320: Water Quality Monitoring</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Marine ocean colour and temperature </span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Extreme event detection such as algal blooms,
+  muddy water/industrial waste, oil spills and water quality parameters, such
+  as surface temperature, turbidity, total suspended matter and chlorophyll-a
+  for inland waters</span></p>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>330: Maritime Surveillance</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Detection and monitoring of anthropogenic targets
+  such as vessels and infrastructure</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Detection of marine pollutants such as oil spills
+  and debris (e.g., plastics) in the marine environment</span></p>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Outputs</span></b><span lang=EN>:</span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Water quality, quantity and maritime surveillance
+  products and test data</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Metadata for corresponding water quality,
+  quantity and maritime surveillance products</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Code for Axis 1, 2 and 3rd party data
+  acquisition, (pre)processing and analysis</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Algorithms and models</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Progress reports and deliverables with
+  comprehensive technical and non-technical details on workflows, methodologies
+  and processes</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Peer-reviewed scientific publications in high
+  impact factor journals</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  <p class=MsoNormal style='line-height:normal'><span lang=EN>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=605 valign=top style='width:16.0cm;border:solid black 1.0pt;
+  border-top:none;background:#BFBFBF;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>WP400 - Axis 3 platform Integration and algorithmic
+  automation</span></b></p>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>PHASE: Design and Implementation</span></b></p>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>WP Manager: CDXi</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=605 valign=top style='width:16.0cm;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Objectives</span></b><span lang=EN>:</span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  115%;border:none'><span lang=EN style='font-family:"Noto Sans Symbols"'>&#9679;<span
+  style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+  lang=EN style='color:black'>Develop and integrate algorithmic automation
+  services for water quality, quantity, and maritime surveillance products.</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  115%;border:none'><span lang=EN style='font-family:"Noto Sans Symbols"'>&#9679;<span
+  style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+  lang=EN style='color:black'>Establish REST API services to streamline data
+  pipelines for water quality, quantity, and maritime surveillance.</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  115%;border:none'><span lang=EN style='font-family:"Noto Sans Symbols"'>&#9679;<span
+  style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+  lang=EN style='color:black'>Implement a scalable architecture to support the
+  integration of Axis 3 platform services.</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  115%;border:none'><span lang=EN style='font-family:"Noto Sans Symbols"'>&#9679;<span
+  style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+  lang=EN style='color:black'>Create user and installation manuals for software
+  services developed under Axis 3.</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  115%;border:none'><span lang=EN style='font-family:"Noto Sans Symbols"'>&#9679;<span
+  style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+  lang=EN style='color:black'>Conduct system development, integration, and
+  interoperability analysis with existing governmental hubs.</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  115%;border:none'><span lang=EN style='font-family:"Noto Sans Symbols";
+  color:black'>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN style='color:black'>Perform cyber security
+  assessments and risk analysis for the developed system.</span></p>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Inputs</span></b><span lang=EN>:</span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Water quality, quantity and maritime surveillance
+  products (WP300)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Water quality, quantity and maritime surveillance
+  product metadata (WP300)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Code for Axis 1, 2 and 3rd party data
+  acquisition, (pre)processing and analysis (WP300)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Algorithms and models (WP300)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Software user and security requirements (WP200)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Preliminary Architectural Design Document (WP200)</span></p>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Tasks</span></b><span lang=EN>:</span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>410: Algorithmic automation services (code ready to integrate and
+  deploy)</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Creation of REST API services for streamlining
+  the Water quality, quantity and maritime surveillance pipelines (WP300)</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Implementation of architecture to ensure service
+  scalability</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Implementation of Water Quality, Quantity, and
+  Maritime Surveillance pipelines based on a microservice architecture to
+  ensure scalability and portability</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Implementation of internal database</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Engineering Performance Budget</span></p>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>420: Software User and Installation Manual (per service)</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Generation of user and system manuals for
+  installation, services, overall system and guidelines</span></p>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>430: System development, integration and interoperability analysis</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Implementation of system architecture</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Consuming data from Water Quality, Quantity, and
+  Maritime Surveillance services</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Development of a UI for visualisation of test
+  products</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Interoperability analysis and test performance
+  with Governmental Hub</span></p>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>440: Cyber Security and security risk assessment</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Conduct thorough cyber security assessment
+  focusing on data integrity risks during algorithm execution.</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Identify potential cyber security risks related
+  to data malformation in training and inference stages of AI/ML algorithms.</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Evaluate impact of data malformation on accuracy
+  metrics using confusion matrices.</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Provide detailed reports on security risks and
+  mitigation strategies specific to Water Quality, Quantity, and Maritime
+  Surveillance data.</span></p>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Outputs:</span></b></p>
+  </div>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>REST API services for water quality, quantity and
+  maritime surveillance pipelines</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>System integrating and visualising data from REST
+  API services</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>System user/installation manual and service guide</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Software detailed design document</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Training webinars</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=605 valign=top style='width:16.0cm;border:solid black 1.0pt;
+  border-top:none;background:#BFBFBF;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>WP500 - Pre-operational testing and validation</span></b></p>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>PHASE: Validation and Pre-Operations</span></b></p>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>WP Manager: TotalView</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=605 valign=top style='width:16.0cm;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Objectives</span></b><span lang=EN>: </span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  115%;border:none'><span lang=EN style='font-family:"Noto Sans Symbols"'>&#9679;<span
+  style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+  lang=EN style='color:black'>Generate and validate test data for software
+  verification and validation.</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  115%;border:none'><span lang=EN style='font-family:"Noto Sans Symbols"'>&#9679;<span
+  style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+  lang=EN style='color:black'>Validate software against user requirements on
+  the platform hardware.</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  115%;border:none'><span lang=EN style='font-family:"Noto Sans Symbols"'>&#9679;<span
+  style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+  lang=EN style='color:black'>Demonstrate performance of the service running on
+  the platform.</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  115%;border:none'><span lang=EN style='font-family:"Noto Sans Symbols"'>&#9679;<span
+  style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+  lang=EN style='color:black'>Define and implement operation preparation
+  activities, including training and dress rehearsals.</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  115%;border:none'><span lang=EN style='font-family:"Noto Sans Symbols"'>&#9679;<span
+  style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+  lang=EN style='color:black'>Execute the Axis 3 Service for 3 months before
+  handover to Agency and Greek Government.</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  115%;border:none'><span lang=EN style='font-family:"Noto Sans Symbols"'>&#9679;<span
+  style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+  lang=EN style='color:black'>Update operational documentation following the
+  pre-operational phase.</span></p>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Inputs</span></b><span lang=EN>:</span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Test data for software verification and
+  validation</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>User requirements for software validation</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Platform hardware specifications</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Operational documentation</span></p>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Tasks</span></b><span lang=EN>:</span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>510 Verification of the Validation Scenario and Evaluation Plan</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Ensure that the validation scenario accurately
+  reflects real-world conditions and that the evaluation plan effectively
+  measures the performance of the system.</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>This task involves meticulous examination of the
+  validation scenario and evaluation plan to guarantee their alignment with
+  project objectives and stakeholder expectations.</span></p>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>520 Verification of all performance parameters</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Verify that all performance parameters meet
+  predefined standards and requirements.</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>This task involves conducting comprehensive
+  assessments and tests to ensure that the system performs optimally across
+  various metrics, including speed, accuracy, and reliability.</span></p>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>530 Stakeholder engagement for user feedback collection</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Engage with stakeholders to gather valuable
+  feedback on system usability and effectiveness.</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>This task involves actively involving
+  stakeholders in the validation process to capture their perspectives and
+  insights, which can be crucial for refining the system and enhancing user
+  satisfaction.</span></p>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Outputs</span></b><span lang=EN>:</span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Software Verification Reports summarizing test
+  results and validation outcomes.</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Preliminary Acceptance Review (PAR) Deliverables.</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Final Acceptance/CFAR Close-Out Deliverables</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Contract Closure Documentation.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=605 valign=top style='width:16.0cm;border:solid black 1.0pt;
+  border-top:none;background:#BFBFBF;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>WP600 - Operational Axis 3 Water Monitoring Service</span></b></p>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>PHASE: Validation and Pre-Operations</span></b></p>
+  <p class=MsoNormal style='line-height:normal'><b><span lang=EN
+  style='color:black'>WP Manager: TotalView</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=605 valign=top style='width:16.0cm;border:solid black 1.0pt;
+  border-top:none;padding:5.0pt 5.0pt 5.0pt 5.0pt'>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Objectives</span></b><span lang=EN>: </span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  115%;border:none'><span lang=EN style='font-family:"Noto Sans Symbols";
+  color:black'>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN style='color:black'>Test run and operational
+  execution of the Axis 3 Water Monitoring Service. </span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  115%;border:none'><span lang=EN style='font-family:"Noto Sans Symbols";
+  color:black'>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN style='color:black'>Training of Operators and
+  end-users.</span></p>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Inputs</span></b><span lang=EN>:</span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Project Schedule and Milestones</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Risk Registry</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>KCP#3 Data Package</span></p>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Tasks</span></b><span lang=EN>:</span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>610: Execution of Axes 3 Water Monitoring Service</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Perform dress-rehearsal during the preoperational
+  phase</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Execute the Axis 3 Service before the handover to
+  Agency</span></p>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>620: Training on Water utility operators and civil protection
+  agencies</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Preparing training curriculum and training
+  material with test use case scenarios for training sessions on operators and
+  end users </span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Implementing training sessions to operators and
+  end-users</span></p>
+  <p class=MsoNormal style='margin-left:18.0pt;line-height:normal'><u><span
+  lang=EN>630: Business continuity and service sustainability</span></u></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Implementation of a Business Continuity and a
+  Disaster Recovery Plan</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Verification of fully successful commissioning
+  and validation of the System on the Governmental Hub in accordance with plans
+  and procedures established by the Contractor of Governmental Hub.</span></p>
+  <p class=MsoNormal style='margin-left:54.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Update of risk assessment and of Risk Registry
+  with operational phase related risks </span></p>
+  <div style='border:solid black 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+  <p class=MsoNormal style='line-height:normal;border:none;padding:0cm'><b><span
+  lang=EN>Outputs</span></b><span lang=EN>:</span></p>
+  </div>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Training material with test use cases (CFAR Data
+  Package-CFAR)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Updated Risk Assessment and Risk registry
+  (D-14-CFAR)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Verification and validation Report (D-18-CFAR) </span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Business Continuity and a Disaster Recovery Plan
+  (D-34-Contract Closure)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Service Sustainability Plan (D-34-Contract
+  Closure)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Contract Closure documents (D-34-Contract
+  Closure)</span></p>
+  <p class=MsoNormal style='margin-left:36.0pt;text-indent:-18.0pt;line-height:
+  normal'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span></span><span lang=EN>Update operational documentation SUM and SOP
+  (D-34-Contract Closure)</span></p>
+  </td>
+ </tr>
+</table>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h1><a name="_Toc189213848"><span lang=EN>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>Long Lead items</span></a></h1>
+
+</div>
+
+<p class=MsoNormal style='margin-top:6.0pt;text-align:justify;line-height:normal;
+border:none'><b><span lang=EN style='color:black'>High-Resolution Satellite
+Data Procurement</span></b><span lang=EN style='color:black'>: Acquiring very high-resolution
+satellite data will be essential for accurate water and maritime monitoring in
+this project. With the launch of new satellites planned next year, it’s crucial
+to engage data providers/ministry early to secure access, finalize any necessary
+agreements, and address considerations around licensing, and delivery
+timelines. Starting these arrangements early will ensure continuous access to
+the imagery required for training AI models and carrying out analysis.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;text-align:justify;line-height:normal;
+border:none'><b><span lang=EN style='color:black'>Advanced Sensors and Data
+Integration Equipment</span></b><span lang=EN style='color:black'>: Specialized
+sensors, including hyperspectral, thermal, and advanced optical, are necessary
+to capture detailed water quality data, and their availability may be limited
+or require customization. Early planning is needed to source data from these
+sensors and to coordinate with technical teams for integration into the
+monitoring workflow. Establishing calibration protocols and configuring the
+sensors for satellite data integration will also be essential to ensure data
+quality and compatibility.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;text-align:justify;line-height:normal;
+border:none'><b><span lang=EN style='color:black'>AI Model Development and
+Training Datasets</span></b><span lang=EN style='color:black'>: Developing AI
+models to analyze SAR, optical, and hyperspectral data for water quality and
+quantity monitoring requires extensive time for model training and dataset
+preparation. This involves not only identifying data sources but also securing
+GPU resources and other computing infrastructure. To optimize these processes,
+the team will prototype initial models, gather diverse labeled datasets, and
+plan for iterative refinement based on validation results.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;text-align:justify;line-height:normal;
+border:none'><b><span lang=EN style='color:black'>In-Situ Measurement Devices
+and Calibration Systems</span></b><span lang=EN style='color:black'>: In-situ
+measurement devices are critical for ground truthing and validating remotely
+sensed water quality data. These devices need to be sourced or secured and
+calibrated to match the specifications required for the project’s accuracy
+goals. Early arrangements for these devices, setting up calibration systems,
+and establishing clear data integration workflows will ensure the project can
+continuously validate its remote sensing outputs.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;text-align:justify;line-height:normal;
+border:none'><b><span lang=EN style='color:black'>Software Development and
+Testing Environment Setup</span></b><span lang=EN style='color:black'>: Setting
+up a scalable, secure software environment to support high-resolution image
+processing is crucial, especially given the computational demands of AI
+algorithms. The environment must be capable of handling large datasets and
+high-performance processing, so initiating securing of computing resources or
+cloud services early on will be essential. This will allow the team to
+establish robust sandbox environments and minimize setup delays for development
+and testing.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;text-align:justify;line-height:normal;
+border:none'><b><span lang=EN style='color:black'>Custom Image Processing
+Algorithms and Libraries</span></b><span lang=EN style='color:black'>:
+Developing specialized algorithms for tasks like pollutant detection and algal
+bloom classification requires research, iterative testing, and validation,
+particularly when using very high-resolution datasets. By starting algorithm
+research and development early and involving subject-matter experts, the
+project can ensure that custom code is rigorously tested and tailored to meet
+the specific monitoring needs of water bodies.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;text-align:justify;line-height:normal;
+border:none'><b><span lang=EN style='color:black'>Compliance and Licensing for
+AI and Remote Sensing Software</span></b><span lang=EN style='color:black'>: AI
+model development and image processing workflows are subject to regulatory and
+licensing requirements, particularly within the EU. To avoid potential legal
+complications, project leads should consult legal teams and begin securing
+software licenses and reviewing compliance frameworks like GDPR. Proactively
+addressing these requirements will help avoid interruptions and ensure
+compliance across the project.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;text-align:justify;line-height:normal;
+border:none'><b><span lang=EN style='color:black'>Data Storage and Management
+Infrastructure</span></b><span lang=EN style='color:black'>: Managing high
+volumes of SAR, optical, and hyperspectral data demands a robust storage
+solution that can support processing and retrieval at scale. It’s critical to
+assess storage requirements early, secure required space and set up redundancy
+measures to ensure data integrity. Securing these resources upfront will enable
+seamless data handling as the project scales.</span></p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h1><a name="_Toc189213849"><span lang=EN>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>External Dependencies</span></a></h1>
+
+</div>
+
+<p class=MsoNormal style='margin-bottom:6.0pt;text-align:justify;line-height:
+150%'><span lang=EN>External dependencies that could impact the project
+timeline include:</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN>Satellite Data
+Availability and Timeliness</span></b><span lang=EN>: The project relies
+heavily on regular access to high-resolution satellite data, including
+Sentinel-1 and Sentinel-2 imagery, as well as upcoming satellites set to launch
+next year. Any delays in satellite launches or interruptions in data provision
+from external sources, such as the European Space Agency or commercial
+providers, could impact data continuity, model training, and analysis accuracy.
+Establishing contingency plans with providers will be crucial to maintaining
+steady data access.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN>In-Situ Data
+from Partner Agencies</span></b><span lang=EN>: In-situ data, essential for
+calibrating and validating satellite observations, will depend on collaboration
+with local environmental monitoring agencies. Consistent, high-quality in-situ
+data, such as water quality measurements, pollutant levels, quantity
+measurements and AIS data, must be available to ensure the AI models’ accuracy
+and reliability. Coordinating data-sharing agreements, defining data quality
+standards, and synchronizing data collection schedules with these agencies will
+be necessary to support effective validation efforts.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN>Regulatory
+Compliance and Data Licensing Requirements</span></b><span lang=EN>: The
+project’s use of remote sensing data and AI analysis tools might be subject to
+various regulatory and licensing requirements, potentially including security,
+GDPR for data privacy and EU environmental data standards. Additionally,
+potentially proprietary data sources or third-party software may have licensing
+constraints that could impact the availability and usage of certain datasets or
+tools. Staying updated on relevant regulations will be essential to ensure that
+all project activities remain compliant and uninterrupted.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN>Access to
+Specialized Processing and Computing Infrastructure</span></b><span lang=EN>:
+Given the high computational requirements for processing and analyzing large
+volumes of satellite imagery, access to cloud resources or high-performance
+computing clusters from providers like ESA’s DIAS platforms could be important.
+Any limitations in service availability, costs, or bandwidth restrictions from
+these external providers could slow down processing or limit analysis
+capabilities. Early planning for cloud contracts and monitoring infrastructure
+requirements will be necessary to meet computational demands throughout the
+project.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN>Technical
+Support and Maintenance from Software Vendors</span></b><span lang=EN>: The
+project’s reliance on various specialized software platforms, such as potential
+AI training libraries, creates a dependency on external vendors for technical
+support, software updates, and bug fixes. Any disruptions in support or delays
+in critical updates could affect workflow efficiency or introduce technical
+issues. Regular monitoring and libraries conflict precaution design, will help
+ensure timely access to assistance and updates as needed.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN>Collaboration
+with Research and Development Partners</span></b><span lang=EN>: The project’s
+success in AI model development and algorithm optimization may also depend on
+collaborations with research institutions or technical experts who contribute
+domain-specific insights or methodological expertise. Timely input from these
+partners will be vital for refining AI models and achieving accurate monitoring
+capabilities. Aligning project timelines and coordinating review meetings with
+these external partners will help integrate their expertise effectively into
+the project’s deliverables.</span></p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h1 style='text-align:justify'><a name="_Toc189213850"><span lang=EN>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>Quality Standards and Assurance</span></a></h1>
+
+</div>
+
+<p class=MsoNormal style='margin-top:6.0pt;text-align:justify'><span lang=EN>In
+this project, several procedures will be rigorously applied to ensure the
+reliability, accuracy, and integrity of data processing, model outputs, and
+deliverables. Adhering to project requirements, a structured Quality Assurance
+(QA) framework will be implemented. This framework will include documented
+quality criteria and metrics for each deliverable, covering all phases from
+data acquisition to final analysis. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;text-align:justify'><span lang=EN>A
+comprehensive PA and QA Plan will define these standards in detail, specifying
+procedures for data validation, model accuracy testing, and documentation
+management. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;text-align:justify'><span lang=EN>Key
+QA activities will involve regular data quality checks, especially for remotely
+sensed data, to address issues like noise reduction, spatial accuracy, and
+cloud interference in optical images. Additionally, systematic validation
+protocols will be implemented, including in-situ calibration checks and
+cross-referencing satellite observations with ground-truth data to confirm
+accuracy. AI and machine learning outputs will undergo extensive validation,
+incorporating statistical accuracy metrics and model performance benchmarks, as
+well as routine re-training to account for environmental variability. Peer
+reviews and external audits will further reinforce quality control, ensuring
+that methodologies and results adhere to best practices. QA activities will also
+include traceability measures, where all data processing steps, assumptions,
+and transformations are thoroughly documented to maintain a clear audit trail.
+To safeguard data integrity, secure storage solutions will be implemented, with
+backup protocols to prevent data loss. This quality-driven approach, supported
+by automated testing, routine internal reviews, and continuous improvement
+mechanisms, will ensure that all project outputs meet or exceed required
+quality thresholds, providing stakeholders with reliable and actionable
+insights.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;text-align:justify;line-height:normal;
+border:none'><span lang=EN style='color:black'>&nbsp;</span></p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h1><a name="_Toc189213851"><span lang=EN>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>Resource Requirements, Roles and Responsibilities</span></a></h1>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN>All the necessary
+work in terms of technical, administrative and financial management for the
+successful implementation of the project will be carried out by the Consortium
+as described below. The figure below shows the structure/organisation of the
+consortium and the hierarchical responsibilities of all participating members
+within the Consortium alongside with the interfaces with the Agency. As shown
+in the following figure, there are two distinct levels within the proposed
+organisational system, i.e. the <b>project management level</b> and the <b>project
+implementation level</b>. Each level ensures the efficient and timely
+implementation of the related activities. Specifically:</span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify;text-indent:
+-18.0pt'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>The <b>project management level </b>consists of the
+Legal Representative, the Project Manager, the Administrative and Contractual
+Officer with the associated Groups, and the Data protection Officer Manager
+with the associated Group. The Project Management Team communicates and
+collaborates with the Contracting Authority (ESA, Greek Government) and
+collaborates with external authorities as well as with the internal project
+implementation level.</span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify;text-indent:
+-18.0pt'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>The <b>project implementation level </b>consists of
+six (6) groups, each one dedicated to a WP of the project. Each of these groups
+is managed by a separate group leader, e.g. Technical Leader WP100, WP200 etc.
+Each of these leaders communicates and collaborates with the technical experts
+in their respective working groups and the Project Manager. The Project
+Implementation Team will benefit from additional resources made available by
+Consortium members. </span></p>
+
+<p class=MsoNormal style='margin-left:72.0pt;text-align:justify;text-indent:
+-18.0pt'><span lang=EN>&#9675;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>At the strategic level, the Project Implementation
+Team will receive project management and quality assurance services from the
+Project Management Team. In addition to quality monitoring services, the
+Project Management Team will collaborate with the Project Implementation Team
+on risk management matters. </span></p>
+
+<p class=MsoNormal style='margin-left:72.0pt;text-align:justify;text-indent:
+-18.0pt'><span lang=EN>&#9675;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>On an operational level, the Project Implementation
+Team will assist the Project Management Team with any issues that arise in the
+implementation of the project, providing expert support in technical and
+scientific matters, as well as administrative support on an ad-hoc basis.</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN><img
+width=473 height=811 id=image7.png src="ImplementationPlan.files/image009.gif"></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><i><span lang=EN>Figure
+3: Organisational Breakdown Structure of HELOISA. The diagram depicts the
+hierarchical responsibilities within the Consortium and the interfaces with the
+Agency.</span></i></p>
+
+<span lang=EN style='font-size:11.0pt;line-height:115%;font-family:"Arial",sans-serif'><br
+clear=all style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0cm 0cm 1.0pt 0cm'>
+
+<h1><a name="_Toc189213852"><span lang=EN>7.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>Facilities</span></a></h1>
+
+</div>
+
+<h2 style='margin-left:18.0pt'><a name="_Toc189213853"><span lang=EN>a.<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN>Description
+of TotalView facilities used</span></a><span lang=EN> </span></h2>
+
+<p class=MsoNormal><span lang=EN>TotalView is located in Peristeri, West
+Attica. Since core business of the company requires handling multi-TB data,
+equipment is designed and implemented to support full 10G speed, across all
+network components including:</span></p>
+
+<p class=MsoNormal><span lang=EN>•           network cards</span></p>
+
+<p class=MsoNormal><span lang=EN>•           switches</span></p>
+
+<p class=MsoNormal><span lang=EN>•           data center grade cabling (Cat 6a)
+and connectors</span></p>
+
+<p class=MsoNormal><span lang=EN>Additionally, storage is designed to host
+hundreds of TB in a multilayered architecture (cold - warm - hot), with extra
+backup procedures.</span></p>
+
+<p class=MsoNormal><span lang=EN>Finally, the processing components are
+optimized (GPU, memory, cooling, NVMe) to support full scale Earth Observation
+procedures.</span></p>
+
+<p class=MsoNormal><span lang=EN>TotalView premises are designed to support
+military grade security procedures of the National Industrial Security
+Certificate (EKBA) by the Ministry of National Defense, for National-EU-NATO
+Secrets.</span></p>
+
+<h2 style='margin-left:18.0pt'><a name="_Toc189213854"><span lang=EN>b.<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN>Description
+of ICCS facilities used</span></a><span lang=EN> </span></h2>
+
+<p class=MsoNormal><span lang=EN style='color:black'>ICCS is equipped with a
+Dell Power Edge R910, with 32 CPUs x Intel(R) Xeon(R) CPU X7560 @ 2.27GHz,
+600GB memory and 7TB disk space. The ESXi-6.5.0-20170104001-standard (VMware,
+Inc.) virtualization environment is installed in order to provide a flexible virtual
+machine environment. Moreover, ICCS owns and will provide to the project
+high-end Linux based servers (Intel-Core i7 4770 - 1150/3.4GHz/8MB, RAM: 2 x
+DDR3 8GB 1600MHz, Hard disk: 2 x 2TB HDD 3.5&quot;) so as to facilitate the
+establishment of the communication network of the foreseen system.</span></p>
+
+<h2 style='margin-left:18.0pt'><a name="_Toc189213855"><span lang=EN>c.<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN>Description
+of CDXi Solutions facilities</span></a></h2>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN style='font-size:
+12.0pt;line-height:115%'>The following server is available and can be dedicated
+to the project implementation:</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN> </span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN>Table 2
+CDXi’s Server dedicated to the project implementation </span></p>
+
+<table class=affd border=1 cellspacing=0 cellpadding=0 width=596
+ style='border-collapse:collapse;border:none'>
+ <tr style='height:16.5pt'>
+  <td width=117 style='width:87.75pt;border:solid black 1.0pt;background:#CCCCCC;
+  padding:0cm 5.0pt 0cm 5.0pt;height:16.5pt'>
+  <p class=MsoNormal style='margin-top:0cm;margin-right:7.0pt;margin-bottom:
+  0cm;margin-left:7.0pt;margin-bottom:.0001pt;text-align:justify;line-height:
+  normal'><span lang=EN style='color:black'>Chassis</span></p>
+  </td>
+  <td width=479 style='width:359.25pt;border:solid black 1.0pt;border-left:
+  none;padding:0cm 5.0pt 0cm 5.0pt;height:16.5pt'>
+  <p class=MsoNormal style='margin-top:0cm;margin-right:7.0pt;margin-bottom:
+  0cm;margin-left:7.0pt;margin-bottom:.0001pt;text-align:justify;line-height:
+  normal'><span lang=EN>Be Quiet Dark Base 900 Black Full-Tower Chassis</span></p>
+  </td>
+ </tr>
+ <tr style='height:16.5pt'>
+  <td width=117 style='width:87.75pt;border:solid black 1.0pt;border-top:none;
+  background:#CCCCCC;padding:0cm 5.0pt 0cm 5.0pt;height:16.5pt'>
+  <p class=MsoNormal style='margin-top:0cm;margin-right:7.0pt;margin-bottom:
+  0cm;margin-left:7.0pt;margin-bottom:.0001pt;text-align:justify;line-height:
+  normal'><span lang=EN style='color:black'>PSU</span></p>
+  </td>
+  <td width=479 style='width:359.25pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.0pt 0cm 5.0pt;
+  height:16.5pt'>
+  <p class=MsoNormal style='margin-top:0cm;margin-right:7.0pt;margin-bottom:
+  0cm;margin-left:7.0pt;margin-bottom:.0001pt;text-align:justify;line-height:
+  normal'><span lang=EN>Be Quiet Dark POWER PRO 11 BN64580 Plus Platinum PSU</span></p>
+  </td>
+ </tr>
+ <tr style='height:16.5pt'>
+  <td width=117 style='width:87.75pt;border:solid black 1.0pt;border-top:none;
+  background:#CCCCCC;padding:0cm 5.0pt 0cm 5.0pt;height:16.5pt'>
+  <p class=MsoNormal style='margin-top:0cm;margin-right:7.0pt;margin-bottom:
+  0cm;margin-left:7.0pt;margin-bottom:.0001pt;text-align:justify;line-height:
+  normal'><span lang=EN style='color:black'>CPU</span></p>
+  </td>
+  <td width=479 style='width:359.25pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.0pt 0cm 5.0pt;
+  height:16.5pt'>
+  <p class=MsoNormal style='margin-top:0cm;margin-right:7.0pt;margin-bottom:
+  0cm;margin-left:7.0pt;margin-bottom:.0001pt;text-align:justify;line-height:
+  normal'><span lang=EN>INTEL CPU Core i9-10920X</span></p>
+  </td>
+ </tr>
+ <tr style='height:16.5pt'>
+  <td width=117 style='width:87.75pt;border:solid black 1.0pt;border-top:none;
+  background:#CCCCCC;padding:0cm 5.0pt 0cm 5.0pt;height:16.5pt'>
+  <p class=MsoNormal style='margin-top:0cm;margin-right:7.0pt;margin-bottom:
+  0cm;margin-left:7.0pt;margin-bottom:.0001pt;text-align:justify;line-height:
+  normal'><span lang=EN style='color:black'>CPU Cooling</span></p>
+  </td>
+  <td width=479 style='width:359.25pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.0pt 0cm 5.0pt;
+  height:16.5pt'>
+  <p class=MsoNormal style='margin-top:0cm;margin-right:7.0pt;margin-bottom:
+  0cm;margin-left:7.0pt;margin-bottom:.0001pt;text-align:justify;line-height:
+  normal'><span lang=EN>Corsair Hydro Series H60 (2018)</span></p>
+  </td>
+ </tr>
+ <tr style='height:16.5pt'>
+  <td width=117 style='width:87.75pt;border:solid black 1.0pt;border-top:none;
+  background:#CCCCCC;padding:0cm 5.0pt 0cm 5.0pt;height:16.5pt'>
+  <p class=MsoNormal style='margin-top:0cm;margin-right:7.0pt;margin-bottom:
+  0cm;margin-left:7.0pt;margin-bottom:.0001pt;text-align:justify;line-height:
+  normal'><span lang=EN style='color:black'>Mainboard</span></p>
+  </td>
+  <td width=479 style='width:359.25pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.0pt 0cm 5.0pt;
+  height:16.5pt'>
+  <p class=MsoNormal style='margin-top:0cm;margin-right:7.0pt;margin-bottom:
+  0cm;margin-left:7.0pt;margin-bottom:.0001pt;text-align:justify;line-height:
+  normal'><span lang=EN>ASUS Prime X299-A II</span></p>
+  </td>
+ </tr>
+ <tr style='height:16.5pt'>
+  <td width=117 style='width:87.75pt;border:solid black 1.0pt;border-top:none;
+  background:#CCCCCC;padding:0cm 5.0pt 0cm 5.0pt;height:16.5pt'>
+  <p class=MsoNormal style='margin-top:0cm;margin-right:7.0pt;margin-bottom:
+  0cm;margin-left:7.0pt;margin-bottom:.0001pt;text-align:justify;line-height:
+  normal'><span lang=EN style='color:black'>RAM</span></p>
+  </td>
+  <td width=479 style='width:359.25pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.0pt 0cm 5.0pt;
+  height:16.5pt'>
+  <p class=MsoNormal style='margin-top:0cm;margin-right:7.0pt;margin-bottom:
+  0cm;margin-left:7.0pt;margin-bottom:.0001pt;text-align:justify;line-height:
+  normal'><span lang=EN>128GB (=4x 32Gb) Kingston KF432C16BB/32 DDR4 3200MHz</span></p>
+  </td>
+ </tr>
+ <tr style='height:16.5pt'>
+  <td width=117 style='width:87.75pt;border:solid black 1.0pt;border-top:none;
+  background:#CCCCCC;padding:0cm 5.0pt 0cm 5.0pt;height:16.5pt'>
+  <p class=MsoNormal style='margin-top:0cm;margin-right:7.0pt;margin-bottom:
+  0cm;margin-left:7.0pt;margin-bottom:.0001pt;text-align:justify;line-height:
+  normal'><span lang=EN style='color:black'>SSD</span></p>
+  </td>
+  <td width=479 style='width:359.25pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.0pt 0cm 5.0pt;
+  height:16.5pt'>
+  <p class=MsoNormal style='margin-top:0cm;margin-right:7.0pt;margin-bottom:
+  0cm;margin-left:7.0pt;margin-bottom:.0001pt;text-align:justify;line-height:
+  normal'><span lang=EN>2x 1TB Samsung 970 EVO PLUS PCIe NVMe - M.2 MZ-V7S1T0BW</span></p>
+  </td>
+ </tr>
+ <tr style='height:16.5pt'>
+  <td width=117 style='width:87.75pt;border:solid black 1.0pt;border-top:none;
+  background:#CCCCCC;padding:0cm 5.0pt 0cm 5.0pt;height:16.5pt'>
+  <p class=MsoNormal style='margin-top:0cm;margin-right:7.0pt;margin-bottom:
+  0cm;margin-left:7.0pt;margin-bottom:.0001pt;text-align:justify;line-height:
+  normal'><span lang=EN style='color:black'>HDD</span></p>
+  </td>
+  <td width=479 style='width:359.25pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.0pt 0cm 5.0pt;
+  height:16.5pt'>
+  <p class=MsoNormal style='margin-top:0cm;margin-right:7.0pt;margin-bottom:
+  0cm;margin-left:7.0pt;margin-bottom:.0001pt;text-align:justify;line-height:
+  normal'><span lang=EN>2x 4TB TOSHIBA X300 4TB/SATA III/3.5''/7.2K/256MB</span></p>
+  </td>
+ </tr>
+ <tr style='height:16.5pt'>
+  <td width=117 style='width:87.75pt;border:solid black 1.0pt;border-top:none;
+  background:#CCCCCC;padding:0cm 5.0pt 0cm 5.0pt;height:16.5pt'>
+  <p class=MsoNormal style='margin-top:0cm;margin-right:7.0pt;margin-bottom:
+  0cm;margin-left:7.0pt;margin-bottom:.0001pt;text-align:justify;line-height:
+  normal'><span lang=EN style='color:black'>GPU</span></p>
+  </td>
+  <td width=479 style='width:359.25pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;padding:0cm 5.0pt 0cm 5.0pt;
+  height:16.5pt'>
+  <p class=MsoNormal style='margin-top:0cm;margin-right:7.0pt;margin-bottom:
+  0cm;margin-left:7.0pt;margin-bottom:.0001pt;text-align:justify;line-height:
+  normal'><span lang=EN>MSI GeForce RTX 4090 VENTUS 3X 24G OC 24Gb GDDR6</span></p>
+  </td>
+ </tr>
+</table>
+
+<h2 style='margin-left:18.0pt'><a name="_Toc189213856"><span lang=EN>d.<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN>Description
+of KEMEA facilities used</span></a></h2>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify;text-indent:
+-18.0pt'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>Physical Infrastructure: A modern Datacentre, with
+specialised infrastructure cooling, access control and 40 KVA UPS, that hosts
+all the physical servers, storage and backup systems. All systems, and power
+lines are redundant, providing failover capabilities. Power is delivered to the
+Datacentre, via twin separate electricity lies from the central power plant.
+The space is also monitored by an environmental control system, which, among
+others, includes heat and moisture detectors, providing control and alerting
+the responsible personnel of the IT division. </span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify;text-indent:
+-18.0pt'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>Network and connectivity: The network consists of a
+redundant networking system, utilising Fiber Optical Cabling where necessary
+and UTP cat-6 at the rest of the infrastructure. All active switching and
+routing equipment are set up in pairs, delivering redundancy and resilience.
+State of the art and award-winning systems (IDS, IPS, etc.) are utilized to
+maximize efficiency, speed and security. The whole network is using Fortinet’s
+technology from end to end, providing centralised management, monitoring and alerting.
+Also, a SIEM system as a service is used to provide 365/24/7 management of
+potentials threats. The connectivity to the internet is done by two independent
+ISP connections of 400MBps each, that each one of them has two distinct
+entrance points to the building and the Datacentre, using different media
+fibreoptic cables and microwave link. Monitored VPN access is available for
+remote administration and partners’ access to specific parts of the
+infrastructure on demand. Furthermore, a hands-on system is present, strictly
+for the admins of the Datacentre. Different networks do exist for management,
+for access, two Demilitarized Zones, and a backup network. </span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify;text-indent:
+-18.0pt'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>Servers, storage etc.: The whole capacity of the
+Datacentre, sums up to 400 Intel Xeon Cores, 2 Tb ram, 50 Tb of SSD Storage,
+and 10 P4 Tesla 8Gb GPU cores, with the appropriate backup system. The
+provisioning of the VMs, is done via the Hyper-V 2019 Cluster system. Also,
+some individual servers do exist, providing an isolated environment for testing
+and for experimentation. Mission critical VMs, are placed on the active-active
+cluster system, providing high availability and redundancy. Also, the VOIP telephone
+system is hosted on the high availability cluster, providing teleworking
+capabilities via VPN. Some critical VMs are also hosted on external Datacentres
+with strict SLAs, providing availability and protection. All systems are
+covered by active support contracts and the critical systems from 4-hour
+mission critical support. </span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify;text-indent:
+-18.0pt'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>KEMEA Operational Center Simulation Infrastructure:
+The Operational Center Simulation Infrastructure (OCSI) of KEMEA is a test
+environment and a fully operating legacy system simulator, which supports
+system development, integration, validation and testing from the mockup scale,
+up to demo, pilot and preoperational level. OCSI of KEMEA is based on ArcGIS
+Enterprise platform combined with MS SQLServer RDBMS, which is hosted in
+dedicated servers in KEMEA premises. OCSI covers practically any type of GIS functionality
+and spatiotemporal data management, supporting a wide range of powerful data
+science tools, workflow automation and data visualization as well. The OCSI
+platform supports standards from several Geospatial Standards Organizations
+including OGC, ISO/TC211, IHO as well as a variety of other open IT standards
+related to metadata, communication protocols, data sharing, open architecture
+implementation and can be integrated with other platforms, services, devices
+and systems. Up to now, the implemented applications and services of the OCSI
+include web-services, web-apps and desktop software tools for natural hazard
+simulation and modelling, meteorological data processing, knowledge bases and
+geodatabases relative to Critical Infrastructure Protection, Fire and Flood
+management DSS, Border Control Management Applications. OCSI of KEMEA serves
+interested parties as a fully functional facility to test, validate and
+demonstrate relevant new applications, services and integrated solutions. </span></p>
+
+<h2 style='margin-left:18.0pt'><a name="_Toc189213857"><span lang=EN>e.<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=EN>Description
+of EYATH facilities used</span></a></h2>
+
+<p class=MsoNormal style='margin-top:12.0pt'><span lang=EN style='background:
+white'>EYATH SA will use the following facilities for each stage of the work
+offered:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-indent:-18.0pt'><span
+lang=EN style='background:white'>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN style='background:white'>Sampling Campaigns: </span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:36.0pt;margin-bottom:.0001pt'><span lang=EN style='background:
+white'>For the sampling campaigns at the Polyphytos reservoir EYATH SA will
+utilise boats and field equipment necessary for the consistent and systematic
+collection of water samples (e.g. gps locators, samplers). Moreover, portable
+testing equipment for on-site water quality assessment of various parameters
+(e.g. pH, turbidity, dissolved oxygen, temperature, Sacchi disk) will be
+available.</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-indent:-18.0pt'><span
+lang=EN style='background:white'>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN style='background:white'>Laboratory analyses:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-align:justify'><span lang=EN
+style='background:white'>The TDWTP laboratory is fully equipped to handle both
+physicochemical and microbiological analyses. It operates under ISO 17025
+standards and its advanced analytical instrumentation along with experienced
+personnel adept in handling complex surface water analyses, ensures
+high-quality testing of the samples collected from various positions along the
+Polyphytos Reservoir.</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:36.0pt;margin-bottom:.0001pt;text-indent:-18.0pt'><span
+lang=EN style='background:white'>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN style='background:white'>Validation of results:</span></p>
+
+<p class=MsoNormal style='margin-top:12.0pt;margin-right:0cm;margin-bottom:
+0cm;margin-left:36.0pt;margin-bottom:.0001pt'><span lang=EN style='background:
+white'>For validating the sampling water quality analysis results, EYATH SA
+will employ dedicated PCs to compare them with the surface water quality of
+large aquifers as obtained by standard -based on satellite tools- EYATH SA
+procedures.</span><span lang=EN style='background:lime'> </span></p>
+
+<h2 style='margin-left:18.0pt'><a name="_Toc189213858"><span lang=EN>f.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN>Means of access to information resources</span></a></h2>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN>Data, Information
+and Services are disseminated in an open access policy. The Copernicus
+Contributing Missions can be accessed with a subscription. <b>Data, such as
+DEM10 which needs special rights, will be provided with ESA team help.</b></span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN>Sentinel data are
+instead freely accessible through the Copernicus Dataspace Ecosystem. In
+addition, other Copernicus products that may be of potential use are provided
+freely via the Copernicus services, such as CLMS, CMEMS, CEMS, C3S and CAMS.
+Furthermore, Landsat data are freely accessible through the USGS EarthExplorer.
+Finally, additional in situ data can be also accessed through the Copernicus in
+situ component, as well as EYATH’s sampling campaign(s).</span></p>
+
+<h2 style='margin-left:18.0pt'><a name="_Toc189213859"><span lang=EN>g.<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN>Test
+Facilities</span></a></h2>
+
+<p class=MsoNormal><span lang=EN>For the purposes of the Tender, the following
+test facilities will be used in order to verify and validate the successful
+provision of the Water Monitoring Services of Axis-3.</span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify;text-indent:
+-18.0pt'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>The reservoir of Polyphytos, located in the
+Prefecture of West Macedonia, in the Regional Unit of Kozani, in Greece will be
+used as a testing ground for verifying and validating the water quality service
+for inland waters. The reservoir will be used for the development of the
+necessary in-situ measurements along with other available data related to water
+quality. </span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify;text-indent:
+-18.0pt'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>As already mentioned above the TDWTP Quality
+Control Laboratory facilities of EYATH will be used for the analysis of water
+samples collected from several spots of the Polyfytos reservoir within the
+framework of the sampling campaigns of the project. All the necessary
+physicochemical and biological quality parameters for the validation of the
+monitoring services, will be analysed there.</span></p>
+
+<p class=MsoNormal style='text-align:justify'><b><span lang=EN>Further testing
+areas, will be examined and updated here, later in the project.</span></b></p>
+
+<h2 style='margin-left:18.0pt'><a name="_Toc189213860"><span lang=EN>h.<span
+style='font:7.0pt "Times New Roman"'> </span></span><span lang=EN>Public cloud
+resources</span></a></h2>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN>During the
+implementation of the Water Monitoring Service element of Axis 3, the following
+requirements need to be taken into account:</span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify;text-indent:
+-18.0pt'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>As part of Phase-1 activities, the consortium <b>estimated
+the resources</b> needed from the <b>Axis 3 Platform (Governmental Hub)</b> in
+terms of computing power, memory, etc. and present and discussed the necessary
+requirements with the contractor of the G-Hub, facilitated by ESA and the Greek
+government. [<span style='color:fuchsia'>GNEO-SOW-13</span>] <b>Detailed
+Questionnaires were submitted to G-Hub contractor to document requirements.</b>
+</span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify;text-indent:
+-18.0pt'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>As part of the Phase-2 activity, the consortium <b>shall
+confirm the resource needs</b> from the <b>Axis 3 Platform (Governmental Hub)</b>
+and its compatibility with the HW selected by the Axis 3 Platform contractor
+(together with ESA and the Greek government), at KCP#2.[<span style='color:
+fuchsia'>GNEO-SOW-15</span>]</span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify;text-indent:
+-18.0pt'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>From KCP#2 and as long as needed by the SW
+development, the verification shall be achieved using <b>a reference test
+environment as will be provided by the Governmental Hub contractor</b> via ESA
+and the Greek government. [<span style='color:fuchsia'>GNEO-SOW-47</span>]</span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify;text-indent:
+-18.0pt'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>Between KCP#3 and PAR, the <b>final verification</b>
+and the <b>SW qualification</b> will be performed <b>on the Axis 3 platform</b>.
+[<span style='color:fuchsia'>GNEO-SOW-47</span>]</span></p>
+
+<p class=MsoNormal style='margin-left:36.0pt;text-align:justify;text-indent:
+-18.0pt'><span lang=EN>&#9679;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN>Between the PAR and CFAR, the <b>final SW
+validation and acceptance</b> will be performed on the <b>Governmental Hub</b>
+installed in its final location selected by the Greek government [<span
+style='color:fuchsia'>GNEO-SOW-47</span>]</span></p>
+
+<p class=MsoNormal><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-align:justify'><span lang=EN>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><b><span lang=EN
+style='font-size:14.0pt;line-height:115%'>[End of document]</span></b></p>
+
+</div>
+
+</body>
+
+</html>
