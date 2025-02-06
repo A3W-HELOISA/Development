@@ -3,59 +3,11 @@ description: "Form to capture requirements."
 assignees:
   - "" # Add default assignee here if applicable
 labels:
-  - "stage_1.Preparation"
-  - "status_1.Draft"
 projects:
   - "Development"
 title : "The system shall xxx"
-type: "it_Problem"
+type: "Requirement"
 body:
-  - type: dropdown
-    id: req_type
-    attributes:
-      label: "Requirement type"
-      description: "Select the high level requirement type"
-      options:
-        - "1 User"
-        - "2 System"
-        - "3 Software"
-  - type: dropdown
-    id: req_subtype
-    attributes:
-      label: "Requirement subtype"
-      description: "Select the requirement subtype."
-      options:
-        - "1.1 User"
-        - "2.1 Non-Functional"
-        - "2.2 Technical"
-        - "3.1 Software"
-  - type: dropdown
-    id: req_category
-    attributes:
-      label: "Requirement category"
-      description: "Select the high level requirement category"
-      options:
-        - "2.1.1 Performance"
-        - "2.1.2 Operational"
-        - "2.1.3 Additional product information"
-        - "2.1.4 Timeliness"
-        - "2.1.5 Quality of Products"
-        - "2.2.1 Data Requirements"
-        - "2.2.2 Hardware and Software Specifications"
-  - type: dropdown
-    id: req_subcategory
-    attributes:
-      label: "Requirement subcategory"
-      description: "Select the requirement subcategory"
-      options:
-        - "2.1.1.1 Execution environment"
-        - "2.1.1.2 Execution time"
-        - "2.1.1.3 Throughput"
-        - "2.1.1.4 Data Latency"
-        - "2.1.2.1 Availability"
-        - "2.1.2.2 Reliability"
-        - "2.1.2.3 Maintenance"
-        - "2.1.2.4 Portability"
   - type: textarea
     id: description
     attributes:
