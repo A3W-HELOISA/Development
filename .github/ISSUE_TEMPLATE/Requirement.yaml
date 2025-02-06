@@ -75,8 +75,15 @@ body:
       description: "Document the acceptance criteria of requirement fulfillment"
       placeholder: "Provide the acceptance criteria"
   - type: textarea
+    id: testing_procedure
+    attributes:
+      label: "Remarks during testing procedure"
+      description: "Record any problems, modifications, or any other note, raised during the tesing procedure"
+      placeholder: "Provide the procedural remarks"
+  - type: textarea
     id: test_results
     attributes:
       label: "Test results"
       description: "Record test results"
       placeholder: "Provide the test results"
+	  
