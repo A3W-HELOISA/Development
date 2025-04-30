@@ -6,7 +6,7 @@
 - End each SQL statement with a semicolon (`;`).
 
 ## Naming Conventions
-
+ 
 ### Tables
 - Use singular nouns (e.g., `user`, `order`).
 - Column name should be always **id**, even in tempting cases when the table has a small unique code like countries
