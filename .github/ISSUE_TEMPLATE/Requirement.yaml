@@ -8,6 +8,12 @@ title : "The system shall xxx"
 type: "Requirement"
 body:
   - type: textarea
+    id: requirement-id
+    attributes:
+      label: "Requirement ID"
+      description: "Requiremen ID based on the user, functional and security requirements, and system requirements specification documents."
+      placeholder: "Provide the requirement IDs separated by commas that are relevant to this issue."
+  - type: textarea
     id: description
     attributes:
       label: "Description"
