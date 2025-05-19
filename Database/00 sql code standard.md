@@ -12,7 +12,7 @@
 - Column name should be always **id**, even in tempting cases when the table has a small unique code like countries
 - Data type should be **serial**, and only in extreme cases bigserial (>2.147.483.647) 
 - Name of constraint should be `pk_<table>` (e.g., `pk_user`).
-- Always create table and primary key together at start.
+- Always create table and primary key together at start in one line.
 - Example: CREATE TABLE x_type (id SERIAL, CONSTRAINT pk_x_type PRIMARY KEY (id));
 
 ### Columns
