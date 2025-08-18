@@ -1,26 +1,14 @@
-#/bin/bash
-# This script pushes the latest changes from the internal repository to the production repository.
-git clone --depth 1 -b main git@github.com:kvlachos-cdxi/test-1.git /tmp/internal/ # Clone snapshot of production-ready source code (latest commit of main branch)
-git clone git@github.com:kvlachos-cdxi/test-2.git /tmp/prod
-cd /tmp/prod
-git checkout main # or whatever production branch
-rsync -a --delete --exclude='.git' --exclude='LICENSE' /tmp/internal/ /tmp/prod/ # sync files from internal to production
-git add -A
-git commit -m "New update"
-git push origin main
-
-
 #!/usr/bin/env bash
 set -euo pipefail
 
 # -----------------------------
 # Config - Edit these values
 # -----------------------------
-INTERNAL_REPO="git@github.com:kvlachos-cdxi/test-1.git"
+INTERNAL_REPO="git@github.com:CDXi-solutions/extreme-events.git"
 INTERNAL_BRANCH="main"
 INTERNAL_DIR="/tmp/internal"
 
-PROD_REPO="git@github.com:kvlachos-cdxi/test-2.git"
+PROD_REPO="git@github.com:HellenicSpaceCenter/ws-wq-extreme-events.git"
 PROD_BRANCH="main"
 PROD_DIR="/tmp/prod"
 
