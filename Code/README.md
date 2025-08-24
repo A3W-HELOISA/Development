@@ -104,9 +104,9 @@ Use the `BLANK_README.md` to get started.
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
+* [![SNAP][SNAP-badge]][SNAP-url]
+* [![xarray][xarray-badge]][xarray-url]
+* [![rasterio][rasterio-badge]][rasterio-url]
 * [![Angular][Angular.io]][Angular-url]
 * [![Svelte][Svelte.dev]][Svelte-url]
 * [![Laravel][Laravel.com]][Laravel-url]
@@ -278,4 +278,10 @@ Use this space to list resources you find helpful and would like to give credit 
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
+[JQuery-url]: https://jquery.com
+[SNAP-badge]: https://img.shields.io/badge/SNAP-ESA-blue?style=for-the-badge
+[SNAP-url]: https://step.esa.int/main/toolboxes/snap/
+[xarray-badge]: https://img.shields.io/badge/xarray-1.0+-orange?style=for-the-badge
+[xarray-url]: https://xarray.dev/
+[rasterio-badge]: https://img.shields.io/badge/rasterio-GDAL-green?style=for-the-badge
+[rasterio-url]: https://rasterio.readthedocs.io/
