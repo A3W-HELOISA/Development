@@ -1,0 +1,89 @@
+---
+name: "Non-Conformity Report"
+about: "Report a deviation from requirements, standards, or stakeholder expectations"
+title: "NC-[ID]: <Short description of issue>"
+labels: ["priority.4-Critical 🔴", "status_1.Draft 📝"]
+type: 4.Non-conformance
+assignees: ["keradin"]
+projects: ["A3W-HELOISA/Development"]
+---
+
+# 📝 Non-Conformity Report
+
+## 🔹 Non-Conformity Definition
+A non-conformity is any deviation from requirements, standards, or stakeholder expectations that could negatively impact project outcomes, data quality, or compliance.
+
+---
+
+## 📌 Basic Information
+- **ID:** NC-YYYY-XXX (unique identifier)
+- **Title:**  
+- **Reporter:**  
+- **Date Identified:**  
+- **Project Phase / Deliverable:**  
+- **Responsible Party / Department:**  
+
+---
+
+## ⚠️ Severity Classification
+- [ ] Minor – Easily correctable, minimal impact  
+- [ ] Moderate – Requires structured corrective action, some project impact  
+- [ ] Critical – Major impact on project outcomes, compliance, or stakeholders  
+
+---
+
+## 🐞 Description of the Non-Conformity
+- **Observed Behavior:**  
+- **Expected Behavior / Requirement:**  
+- **Relevant Standard / Requirement Reference:**  
+- **Evidence (logs, screenshots, datasets, etc.):**
+
+---
+
+## ⛑ Immediate Containment Actions
+- **Actions Taken:**  
+- **Responsible Person/Team:**  
+- **Date Completed:**  
+
+---
+
+## 🔍 Root Cause Analysis
+- **Investigation Performed:**  
+- **Findings:**  
+- **Confirmed Root Cause(s):**  
+
+---
+
+## 🔧 Corrective Action Plan
+- **Planned Actions:**  
+- **Timeline:**  
+- **Assigned To:**  
+- **Verification Steps:**  
+
+---
+
+## ✅ Close-Out Verification
+- [ ] Corrective actions implemented  
+- [ ] Follow-up testing/validation completed  
+- [ ] No residual impacts confirmed  
+- [ ] Final resolution documented  
+
+**Close-Out Notes:**  
+
+---
+
+## 📊 Status Tracking
+- **Current Status:**  
+  - [ ] Open  
+  - [ ] Under Investigation  
+  - [ ] Corrective Actions In Progress  
+  - [ ] Pending Verification  
+  - [ ] Closed  
+
+- **Linked Issues / PRs:**  
+- **Related Deliverables / Milestones:**  
+
+---
+
+## 🗒 Notes & Lessons Learned
+_(Free text field for additional comments, observations, or lessons learned)_
