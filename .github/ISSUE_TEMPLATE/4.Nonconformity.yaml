@@ -32,17 +32,6 @@ body:
     validations:
       required: true
 
-  - type: dropdown
-    id: severity
-    attributes:
-      label: Severity
-      options:
-        - Minor
-        - Moderate
-        - Critical
-    validations:
-      required: true
-
   - type: textarea
     id: containment
     attributes:
