@@ -1,11 +1,11 @@
-name: "Non-Conformance"
+name: "Nonconformity"
 description: "Report a deviation from requirements, standards, or stakeholder expectations"
 
 assignees: ["keradin"]
 labels: ["priority.4-Critical 🔴", "status_1.Draft 📝"]
 projects: ["A3W-HELOISA/Development"]
 title: "NC-[ID]: <Short description of issue>"
-type: 4.Non-conformance
+type: 4.Nonconformity
 
 body:
   - type: markdown
