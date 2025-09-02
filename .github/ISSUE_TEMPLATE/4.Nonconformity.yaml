@@ -4,7 +4,7 @@ description: "Report a deviation from requirements, standards, or stakeholder ex
 assignees: ["keradin"]
 labels: ["priority.4-Critical 🔴", "status_1.Draft 📝"]
 projects: ["A3W-HELOISA/Development"]
-title: "NC-[ID]: <Short description of issue>"
+title: "NC-[###]: <Short description of issue>"
 type: 4.Nonconformity
 
 body:
@@ -13,15 +13,6 @@ body:
       value: |
         ## Non-Conformity Definition
         Please fill out all relevant fields below.
-
-  - type: input
-    id: id
-    attributes:
-      label: Non-Conformity ID
-      description: Unique identifier (NC-###)
-      placeholder: "NC-001"
-    validations:
-      required: true
 
   - type: textarea
     id: description
