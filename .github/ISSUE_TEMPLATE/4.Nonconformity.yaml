@@ -2,7 +2,7 @@ name: "4.Nonconformity"
 description: "Report a deviation from requirements, standards, or stakeholder expectations"
 
 assignees: ["keradin"]
-labels: ["priority.4-Critical 🔴", "status_1.Draft 📝"]
+labels: []
 projects: ["A3W-HELOISA/Development"]
 title: "NC-[###]: <Short description of issue>"
 type: 4.Nonconformity
