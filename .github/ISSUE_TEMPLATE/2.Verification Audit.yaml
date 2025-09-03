@@ -1,0 +1,129 @@
+name: "2.Verification Review"
+description: "Concise audit of process or product: scope, evidence, checklist, findings, decision."
+
+assignees: ["keradin"]
+labels: []
+projects: ["A3W-HELOISA/Development"]
+title: "[Audit] <Process/Product> - <area> - <date>"
+type: 2.Verification Audit
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # HELOISA — Audit (Simple)
+        Use this form to record a short, evidence-based audit. Keep it concrete and link artifacts.
+
+  ## Metadata
+  - type: dropdown
+    id: audit_type
+    attributes:
+      label: Audit Type
+      options:
+        - Input data
+        - Process
+        - Product
+        - Metadata
+        - Configuration
+        - Security/Privacy
+        - Third-Party
+    validations:
+      required: true
+
+  - type: input
+    id: area
+    attributes:
+      label: Area / Item Audited
+      placeholder: "e.g., Ingestion process / Output product XYZ / Release 1.2"
+    validations:
+      required: true
+
+  - type: input
+    id: auditors
+    attributes:
+      label: Auditor(s)
+      placeholder: "Name1, Name2"
+    validations:
+      required: true
+
+  - type: input
+    id: date
+    attributes:
+      label: Date
+      placeholder: "YYYY-MM-DD"
+    validations:
+      required: true
+
+  ## Scope & Criteria
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: "Boundaries of what was audited (process steps, components, time window)."
+      placeholder: "e.g., Data ingestion from S3 to GHub for March 2025 runs."
+    validations:
+      required: true
+
+  - type: input
+    id: criteria
+    attributes:
+      label: Criteria / Standards
+      placeholder: "GHub Rules vX.Y, Contract §x.y, Policy xyz"
+    validations:
+      required: true
+
+  - type: input
+    id: sampling
+    attributes:
+      label: Sampling
+      placeholder: "Sample size & method (e.g., 10 items, risk-based)."
+
+  ## Findings & Nonconformities
+  - type: markdown
+    attributes:
+      value: |
+        Log each finding as a separate issue when substantial. Summarize below and link them.
+
+  - type: textarea
+    id: findings_summary
+    attributes:
+      label: Findings Summary
+      description: "Short list with severity and description."
+      placeholder: |
+        - C: Missing approval for SOP change (Issue #123)
+        - H: Two products missing metadata field `proj:version` (Issue #124)
+        - M: Incomplete logs in step 3 (Issue #125)
+
+  - type: markdown
+    attributes:
+      value: |
+        **Close-out rule**
+        - No **Critical or High** open to accept audit
+        - Medium with plan ≤ 30 days
+        - Low tracked
+
+  ## Decision
+  - type: dropdown
+    id: decision
+    attributes:
+      label: Audit Decision
+      options:
+        - Pass
+        - Conditional Pass
+        - Fail
+    validations:
+      required: true
+
+  - type: textarea
+    id: conditions
+    attributes:
+      label: Conditions / Required Actions (if Conditional Pass or Fail)
+      placeholder: "- Close Issue #124 by YYYY-MM-DD\n- Provide training evidence for roles A/B"
+
+  - type: input
+    id: signoff
+    attributes:
+      label: Sign-off (Auditor)
+      placeholder: "Name(s)"
+    validations:
+      required: true
