@@ -60,7 +60,7 @@ body:
     attributes:
       label: Scope
       description: "Boundaries of what was audited (process steps, components, time window)."
-      placeholder: "e.g., Data ingestion from S3 to GHub for March 2025 runs."
+      placeholder: "e.g., Data ingestion from GHub"
     validations:
       required: true
 
@@ -76,13 +76,7 @@ body:
     id: sampling
     attributes:
       label: Sampling
-      placeholder: "Sample size & method (e.g., 10 items, risk-based)."
-
-  ## Findings & Nonconformities
-  - type: markdown
-    attributes:
-      value: |
-        Log each finding as a separate issue when substantial. Summarize below and link them.
+      placeholder: "Sample size & method (e.g., 10 items, hand selected)."
 
   - type: textarea
     id: findings_summary
@@ -90,17 +84,17 @@ body:
       label: Findings Summary
       description: "Short list with severity and description."
       placeholder: |
-        - C: Missing approval for SOP change (Issue #123)
-        - H: Two products missing metadata field `proj:version` (Issue #124)
-        - M: Incomplete logs in step 3 (Issue #125)
+        - 1: Missing ...
+        - 2: Complicated ...
+        - 3: Refactoring is required for...
 
   - type: markdown
     attributes:
       value: |
         **Close-out rule**
-        - No **Critical or High** open to accept audit
-        - Medium with plan ≤ 30 days
-        - Low tracked
+        - No **Critical** or **High** open to accept audit
+        - **Medium** with plan ≤ 30 days
+        - **Low** tracked
 
   ## Decision
   - type: dropdown
@@ -118,7 +112,10 @@ body:
     id: conditions
     attributes:
       label: Conditions / Required Actions (if Conditional Pass or Fail)
-      placeholder: "- Close Issue #124 by YYYY-MM-DD\n- Provide training evidence for roles A/B"
+      placeholder: |
+        - 1: Implement ...
+        - 2: Review and refactor ...
+        - 3: Consult ...
 
   - type: input
     id: signoff
