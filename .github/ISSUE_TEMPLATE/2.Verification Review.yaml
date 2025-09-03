@@ -1,0 +1,172 @@
+name: "HELOISA — Coding Phase Lightweight Review"
+description: "Checklist for coding-phase review: rules, inputs/data, configuration, build/products, metadata, findings, decision."
+title: "[Coding Review] <component/service> - <version>"
+labels: ["HELOISA", "review", "coding-phase"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # HELOISA — Coding Phase **Lightweight Review**
+
+        Copy this into your PR/issue and tick the boxes. Keep it short—link evidence where needed.
+
+  ## Metadata
+  - type: dropdown
+    id: module
+    attributes:
+      label: Module
+      options:
+        - Water Quantity
+        - Water Quality
+        - Maritime Surveillance
+        - Universal
+    validations:
+      required: true
+
+  - type: input
+    id: component
+    attributes:
+      label: Component/Service
+      placeholder: "e.g., ghub-ingestor"
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version/Tag
+      placeholder: "vX.Y  /  image:tag"
+    validations:
+      required: true
+
+  - type: input
+    id: reviewers
+    attributes:
+      label: Reviewer(s)
+      placeholder: "Name1, Name2"
+    validations:
+      required: true
+
+  - type: input
+    id: date
+    attributes:
+      label: Date
+      placeholder: "YYYY-MM-DD"
+
+  - type: markdown
+    attributes:
+      value: "---"
+
+  ## 1) Coding Rules & Hygiene
+  - type: checkboxes
+    id: coding_rules
+    attributes:
+      label: "1) Coding Rules & Hygiene"
+      options:
+        - label: "Coding standards are followed"
+        - label: "No dead code / TODOs left in production paths"
+        - label: "Logs are produced"
+        - label: "Error handling is consistent (no silent failures)"
+        - label: "No sensitive data in logs or errors"
+
+  ## 2) Inputs & Data
+  - type: checkboxes
+    id: inputs_data
+    attributes:
+      label: "2) Inputs & Data"
+      options:
+        - label: "Input data sources are consistent with GHub rules"
+        - label: "Data availability module is implemented"
+        - label: "External datasets are implemented according to GHub rules"
+
+  ## 3) Configuration & Secrets
+  - type: checkboxes
+    id: config_secrets
+    attributes:
+      label: "3) Configuration & Secrets"
+      options:
+        - label: "All runtime settings via config files/env, and not hard-coded"
+        - label: "Separate config for DEV/TEST/PROD; defaults safe"
+        - label: "Config and secret keys documented"
+
+  ## 4) Build and Products
+  - type: checkboxes
+    id: build_products
+    attributes:
+      label: "4) Build and Products"
+      options:
+        - label: "Build succeeds from clean checkout"
+        - label: "Expected products produced"
+        - label: "Expected products transferred to final location"
+        - label: "Temporary data are discarded"
+
+  ## 5) Metadata
+  - type: checkboxes
+    id: metadata
+    attributes:
+      label: "5) Metadata"
+      options:
+        - label: "Product metadata generated alongside outputs"
+        - label: "Metadata includes required attributes for STAC"
+        - label: "Metadata validates against schema"
+
+  - type: markdown
+    attributes:
+      value: "---"
+
+  ## Findings & Actions
+  - type: markdown
+    attributes:
+      value: |
+        **Findings & Actions**
+        - Open each finding as a separate sub-issue and include:
+          - Severity (Critical/High/Medium/Low)
+          - Area
+          - Finding
+          - Owner
+          - Due
+
+  - type: textarea
+    id: findings_links
+    attributes:
+      label: Links to Findings (sub-issues)
+      description: "Paste URLs to the created sub-issues, one per line."
+      placeholder: |
+        https://github.com/org/repo/issues/123
+        https://github.com/org/repo/issues/124
+
+  - type: markdown
+    attributes:
+      value: |
+        > **Close-out rule:**
+        > - No **Critical or High** finding open to merge  
+        > - Medium with plan ≤ 30 days  
+        > - Low tracked
+
+  ## Final Decision
+  - type: dropdown
+    id: final_decision
+    attributes:
+      label: Final Decision
+      options:
+        - Go
+        - Conditional Go
+        - No-Go (rework required)
+    validations:
+      required: true
+
+  - type: textarea
+    id: conditions_notes
+    attributes:
+      label: Conditions / Notes
+      placeholder: "<brief list>"
+
+  - type: input
+    id: signoff
+    attributes:
+      label: Sign-off (Reviewer(s))
+      placeholder: "Name(s)"
+    validations:
+      required: true
