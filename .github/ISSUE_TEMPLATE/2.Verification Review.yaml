@@ -1,16 +1,17 @@
-name: "HELOISA — Coding Phase Lightweight Review"
+name: "2.Verification Review"
 description: "Checklist for coding-phase review: rules, inputs/data, configuration, build/products, metadata, findings, decision."
+
+assignees: ["keradin"]
+labels: []
+projects: ["A3W-HELOISA/Development"]
 title: "[Coding Review] <component/service> - <version>"
-labels: ["HELOISA", "review", "coding-phase"]
-assignees: []
+type: 2.Verification Review
 
 body:
   - type: markdown
     attributes:
       value: |
         # HELOISA — Coding Phase **Lightweight Review**
-
-        Copy this into your PR/issue and tick the boxes. Keep it short—link evidence where needed.
 
   ## Metadata
   - type: dropdown
@@ -128,22 +129,13 @@ body:
           - Owner
           - Due
 
-  - type: textarea
-    id: findings_links
-    attributes:
-      label: Links to Findings (sub-issues)
-      description: "Paste URLs to the created sub-issues, one per line."
-      placeholder: |
-        https://github.com/org/repo/issues/123
-        https://github.com/org/repo/issues/124
-
   - type: markdown
     attributes:
       value: |
         > **Close-out rule:**
-        > - No **Critical or High** finding open to merge  
-        > - Medium with plan ≤ 30 days  
-        > - Low tracked
+        > - No **Critical** or **High** finding open to merge  
+        > - **Medium** with plan ≤ 30 days  
+        > - **Low** tracked
 
   ## Final Decision
   - type: dropdown
