@@ -14,26 +14,6 @@ body:
         # HELOISA — Coding Phase **Lightweight Review**
 
   ## Metadata
-  - type: dropdown
-    id: module
-    attributes:
-      label: Module
-      options:
-        - Water Quantity
-        - Water Quality
-        - Maritime Surveillance
-        - Universal
-    validations:
-      required: true
-
-  - type: input
-    id: component
-    attributes:
-      label: Component/Service
-      placeholder: "e.g., ghub-ingestor"
-    validations:
-      required: true
-
   - type: input
     id: version
     attributes:
