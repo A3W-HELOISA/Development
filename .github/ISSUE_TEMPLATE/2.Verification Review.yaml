@@ -1,4 +1,4 @@
-name: "2.Verification-Review"
+name: "2.Verification Review"
 description: "Checklist for coding-phase review: rules, inputs/data, configuration, build/products, metadata, findings, decision."
 
 assignees: ["keradin"]
