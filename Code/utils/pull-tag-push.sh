@@ -91,21 +91,25 @@ fi
 log "Tagging ${FROM_REF} -> ${TO_REF}"
 docker tag "${FROM_REF}" "${TO_REF}"
 
-# Push with retries too
-n=0
-until [[ $n -gt $RETRIES ]]; do
-  ((n++))
-  log "[$n/$((RETRIES+1))] Pushing ${TO_REF}…"
-  if docker push "${TO_REF}"; then
-    log "Success."
-    exit 0
-  fi
-  warn "Push failed; retrying…"
-  sleep $((n*2))
-done
+#
+docker push "${TO_REF}"
 
-err "Push failed after $((RETRIES+1)) attempts."
-exit 4
+# # Push with retries too
+# n=0
+# until [[ $n -gt $RETRIES ]]; do
+#   ((n++))
+#   log "[$n/$((RETRIES+1))] Pushing ${TO_REF}…"
+#   if docker push "${TO_REF}"; then
+#     # echo $n
+#     log "Success."
+#     exit 0
+#   fi
+#   warn "Push failed; retrying…"
+#   sleep $((n*2))
+# done
+# echo $n
+# err "Push failed after $((RETRIES+1)) attempts."
+# exit 4
 
 #echo "Pulling bin image from CDXi registry..." &&
 #docker pull ghcr.io/cdxi-solutions/muddy-service:bin
