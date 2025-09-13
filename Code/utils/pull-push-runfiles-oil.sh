@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-#!/usr/bin/env bash
-set -euo pipefail
-
 # Defaults (you can override with flags)
 SRC_REPO="git@github.com:CDXi-solutions/extreme-events.git"
 SRC_BRANCH="binaries"
