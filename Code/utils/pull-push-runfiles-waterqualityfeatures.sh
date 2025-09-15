@@ -12,7 +12,7 @@ FORCE=0   # if 1, stash local changes in dest repo to allow pull
 QUIET_GIT=--quiet
 
 # Replacement defaults
-REWRITE_FROM='dockerPull: ghcr.io/cdxi-solutions/hydroscanimg:bin"'
+REWRITE_FROM='dockerPull: ghcr.io/cdxi-solutions/hydroscanimg:bin'
 REWRITE_TO='dockerPull: "ghcr.io/hellenicspacecenter/water-monitoring-integration-tests/waterqualityfeatures-service:latest"'
 
 usage() {
