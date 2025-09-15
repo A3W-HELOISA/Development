@@ -26,6 +26,6 @@ REWRITE_FROM # This is the development/test docker image NAME and TAG that exist
 REWRITE_TO # This is the production docker image NAME and TAG that will exist in the production (i.e., HSC destination) repo
 SRC_MUDDY # the name of the CWL file which you want to retrieve > modify > rename > copy to the destination repo
 SRC_INPUTS # the name of the yaml file which you want to retrieve and copy to the destination repo
-Line 128,145,146,149 # The names of the cwl and yaml that will be copied to the destination remote repo. These may need adaptation (e.g., the muddy.cwl)
+Line 125,142,143,146 # The names of the cwl and yaml that will be copied to the destination remote repo. These may need adaptation (e.g., the muddy.cwl)
 
 ```
