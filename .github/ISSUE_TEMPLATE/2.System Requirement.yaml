@@ -37,7 +37,7 @@ body:
       label: "Remarks"
       description: "Record any problems, modifications, or any other note, raised during the VV procedure"
       placeholder: "Provide any procedural remarks"
-  - type: textarea
+  - type: dropdown
     id: test_results
     attributes:
       label: "Decision"
@@ -45,3 +45,5 @@ body:
       options:
         - Pass
         - Fail
+    validations:
+      required: false
