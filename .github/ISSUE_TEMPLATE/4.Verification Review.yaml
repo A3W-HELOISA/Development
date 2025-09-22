@@ -1,11 +1,11 @@
-name: "2.Verification Review"
+name: "4.Verification Review"
 description: "Checklist for coding-phase review: rules, inputs/data, configuration, build/products, metadata, findings, decision."
 
 assignees: ["keradin"]
 labels: []
 projects: ["A3W-HELOISA/Development"]
 title: "[Coding Review] <component/service> - <version>"
-type: 2.Verification Review
+type: 4.Verification Review
 
 body:
   - type: markdown

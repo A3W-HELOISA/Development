@@ -5,7 +5,7 @@ assignees:
 projects:
   - "Development"
 title : "[GNEO-SOW-1-URS-001] Areas of interest & data access"
-type: "Requirement"
+type: "1.User Requirement"
 body:
   - type: textarea
     id: requirement-id

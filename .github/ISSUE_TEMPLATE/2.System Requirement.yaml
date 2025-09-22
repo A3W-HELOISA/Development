@@ -1,11 +1,11 @@
-name: "1.System Requirement"
+name: "2.System Requirement"
 description: "Form to capture requirements."
 assignees:
   - "" # Add default assignee here if applicable
 projects:
   - "Development"
 title : "[GNEO-SOW-2-FRS-001] Geographical areas and water bodies of interest"
-type: "Requirement"
+type: "2.System Requirement"
 body:
   - type: textarea
     id: requirement-id

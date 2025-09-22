@@ -1,11 +1,11 @@
-name: "2.Verification Audit"
+name: "3.Verification Audit"
 description: "Concise audit of process or product: scope, evidence, checklist, findings, decision."
 
 assignees: ["keradin"]
 labels: []
 projects: ["A3W-HELOISA/Development"]
 title: "[Audit] <Process/Product> - <area> - <date>"
-type: 2.Verification Audit
+type: 3.Verification Audit
 
 body:
   - type: markdown
