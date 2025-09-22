@@ -1,0 +1,45 @@
+name: "Requirement"
+description: "Form to capture requirements."
+assignees:
+  - "" # Add default assignee here if applicable
+projects:
+  - "Development"
+title : "[<requirement-id] <requirement-title>"
+type: "Requirement"
+body:
+  - type: textarea
+    id: requirement-id
+    attributes:
+      label: "Related/Mapped Requirement ID(s)"
+      description: "Requirement ID(s) based on the user, functional and security requirements, and system requirements specification documents"
+      placeholder: "Provide the requirement ID(s) separated by commas that are related to/mapped with the current requirement. Example: GNEO-SOW-1-FRS-001,GNEO-SOW-1-URS-001"
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: "Description of the current requirement derived by the deliverables and requirement reviews"
+      placeholder: "Provide a detailed description"
+  - type: textarea
+    id: vv_instructions
+    attributes:
+      label: "Validation/Verification testing instructions"
+      description: "Instructions to perform the required test"
+      placeholder: "List possible instructions"
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: "Acceptance Criteria"
+      description: "Document the acceptance criteria of requirement fulfillment"
+      placeholder: "Provide the acceptance criteria"
+  - type: textarea
+    id: testing_procedure
+    attributes:
+      label: "Remarks during testing procedure"
+      description: "Record any problems, modifications, or any other note, raised during the tesing procedure"
+      placeholder: "Provide any procedural remarks"
+  - type: textarea
+    id: test_results
+    attributes:
+      label: "Test results"
+      description: "Record test results"
+      placeholder: "Provide any test results"
