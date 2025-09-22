@@ -1,10 +1,10 @@
-name: "1.Requirement"
+name: "1.User Requirement"
 description: "Form to capture requirements."
 assignees:
   - "" # Add default assignee here if applicable
 projects:
   - "Development"
-title : "[<requirement-id] <requirement-title>"
+title : "[GNEO-SOW-1-URS-001] Areas of interest & data access"
 type: "Requirement"
 body:
   - type: textarea
@@ -22,24 +22,26 @@ body:
   - type: textarea
     id: vv_instructions
     attributes:
-      label: "Validation/Verification testing instructions"
+      label: "Validation/Verification Instructions"
       description: "Instructions to perform the required test"
-      placeholder: "List possible instructions"
+      placeholder: "Check completion of relevant/mapped System Requirements, and Validate-User checklist."
   - type: textarea
     id: acceptance_criteria
     attributes:
-      label: "Acceptance Criteria"
-      description: "Document the acceptance criteria of requirement fulfillment"
-      placeholder: "Provide the acceptance criteria"
+      label: "Acceptance Rules"
+      description: "Document the acceptance rules of the current requirement"
+      placeholder: "All relevant/mapped Requirements, and Validate-User must be fulfilled"
   - type: textarea
     id: testing_procedure
     attributes:
-      label: "Remarks during testing procedure"
+      label: "Remarks"
       description: "Record any problems, modifications, or any other note, raised during the tesing procedure"
       placeholder: "Provide any procedural remarks"
   - type: textarea
     id: test_results
     attributes:
-      label: "Test results"
-      description: "Record test results"
-      placeholder: "Provide any test results"
+      label: "Decision"
+      description: "Select whether the current requirement has been accomplished or not"
+      options:
+        - Pass
+        - Fail
