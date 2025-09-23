@@ -137,6 +137,10 @@ fi
 DEST_DIR="$DEST_REPO_LOCAL/$DEST_SUBPATH"
 mkdir -p "$DEST_DIR"
 
+# Pull changes in destination repo again to minimize conflicts
+log "Pulling latest changes in destination repo again to minimize conflicts…"
+git -C "$DEST_REPO_LOCAL" pull
+
 # Copy/rename to muddy.cwl, and inputs.yaml unchanged
 log "Copying files into $DEST_DIR…"
 install -m 0644 "$MODIFIED_CWL" "$DEST_DIR/oceancolour.cwl"
