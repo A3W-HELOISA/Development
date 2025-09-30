@@ -13,7 +13,7 @@ QUIET_GIT=--quiet
 
 # Replacement defaults
 REWRITE_FROM='dockerPull: "ghcr.io/cdxi-solutions/muddy-service:bin"'
-REWRITE_TO='dockerPull: "ghcr.io/hellenicspacecenter/water-monitoring-integration-tests/muddy-service:latest"'
+REWRITE_TO='dockerPull: "ghcr.io/hellenicspacecenter/water-monitoring-integration-tests/muddy-service:1"'
 
 usage() {
   cat <<EOF
