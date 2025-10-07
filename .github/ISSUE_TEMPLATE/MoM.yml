@@ -25,7 +25,7 @@ body:
     attributes:
       label: Meeting Time
       description: "Start time and time zone"
-      placeholder: "10:00 – 11:30 EET"
+      placeholder: "11:00 – 12:30 EET"
 
   - type: input
     id: location
@@ -40,9 +40,11 @@ body:
       label: Attendees
       description: "List all participants and their affiliations"
       placeholder: |
-        - John Doe (HELOISA QA Lead)
-        - Maria Papadopoulou (ESA EOEPCA)
-        - Nikos Dimitriou (Project Manager)
+        - Maria Kremezi
+        - Kosta Vlachos
+        - Stelios Kossieris
+        - Andreas Karavias
+        - George Keradinidis
     validations:
       required: true
 
@@ -63,9 +65,7 @@ body:
       label: Discussion Summary
       description: "Summarize the discussion points, decisions made, and rationales"
       placeholder: |
-        - The QA team confirmed validation plan for Marine SST data.  
-        - Agreed to include a new AI-based water turbidity indicator.  
-        - Pending action: finalize metadata schema updates by next week.
+        - 
 
   - type: textarea
     id: decisions
@@ -73,8 +73,8 @@ body:
       label: Key Decisions
       description: "Document all major decisions or agreements made during the meeting"
       placeholder: |
-        - Decision 1: Approve new spatial resolution for coastal water extent (5m).  
-        - Decision 2: Implement real-time alerting for flood monitoring.
+        - Decision 1: 
+        - Decision 2: 
 
   - type: textarea
     id: actions
@@ -82,29 +82,10 @@ body:
       label: Action Items
       description: "List all actions, responsible persons, and deadlines"
       placeholder: |
-        | Action | Responsible | Deadline |
-        |--------|--------------|-----------|
-        | Update the WQ dataset validation scripts | Alex P. | 2025-10-15 |
-        | Review EOEPCA integration plan | Elena K. | 2025-10-18 |
+        Action, Responsible, Deadline
+         , , 
     validations:
       required: true
-
-  - type: textarea
-    id: followup
-    attributes:
-      label: Follow-up / Next Steps
-      description: "Outline what will be done before the next meeting"
-      placeholder: |
-        - Review the new WQ module results  
-        - Schedule next QA validation session  
-        - Prepare slides for ESA progress review
-
-  - type: input
-    id: next_meeting
-    attributes:
-      label: Next Meeting (Date)
-      description: "If known, specify date of next meeting"
-      placeholder: "2025-10-21"
 
   - type: textarea
     id: notes
