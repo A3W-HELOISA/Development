@@ -1,6 +1,6 @@
 name: "Minutes of Meeting (MoM)"
 description: "Document the details, decisions, and action items from a meeting"
-assignees: ["keradin"]
+assignees: ["Keradin"]
 labels: []
 projects: ["ORG/Development"]
 title: "MoM: [Date or Topic]"
@@ -33,7 +33,7 @@ body:
     attributes:
       label: Location / Platform
       description: "Specify the meeting location or online platform"
-      value: "Google Meet / MS Teams / ESA HQ / Athens Office"
+      value: "Google Meet / MS Teams / Athens Office / HSC"
 
   - type: textarea
     id: attendees
@@ -70,7 +70,7 @@ body:
     attributes:
       label: Discussion Summary
       description: "Summarize the discussion points, decisions made, and rationales"
-      placeholder: |
+      value: |
         - 
 
   - type: textarea
@@ -78,7 +78,7 @@ body:
     attributes:
       label: Key Decisions
       description: "Document all major decisions or agreements made during the meeting"
-      placeholder: |
+      value: |
         - 
 
   - type: textarea
@@ -86,7 +86,7 @@ body:
     attributes:
       label: Action Items
       description: "Action, Responsible, Deadline"
-      placeholder: |
+      value: |
         - , , 
     validations:
       required: true
