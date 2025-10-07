@@ -5,14 +5,12 @@ labels: []
 projects: ["ORG/Development"]
 title: "MoM: [Date or Topic]"
 type: "Minutes of meeting"
-
 body:
   - type: markdown
     attributes:
       value: |
         ## 🗓️ Minutes of Meeting (MoM)
         Please fill in all relevant fields below to ensure the meeting is properly documented.
-
   - type: input
     id: date
     attributes:
@@ -21,21 +19,18 @@ body:
       value: "2025-mm-dd"
     validations:
       required: true
-
   - type: input
     id: time
     attributes:
       label: Meeting Time
       description: "Start - End time and time zone"
       value: "11:00 – 12:30 EET"
-
   - type: input
     id: location
     attributes:
       label: Location / Platform
       description: "Specify the meeting location or online platform"
       value: "Google Meet / MS Teams / Athens Office / HSC"
-
   - type: textarea
     id: attendees
     attributes:
@@ -49,7 +44,6 @@ body:
         - George Keradinidis
     validations:
       required: true
-
   - type: textarea
     id: agenda
     attributes:
@@ -65,23 +59,6 @@ body:
         - A1.2 data update
         - A2 data update
         - Planet data update
-
-  - type: textarea
-    id: discussion
-    attributes:
-      label: Discussion Summary
-      description: "Summarize the discussion points, decisions made, and rationales"
-      value: |
-        - 
-
-  - type: textarea
-    id: decisions
-    attributes:
-      label: Key Decisions
-      description: "Document all major decisions or agreements made during the meeting"
-      value: |
-        - 
-
   - type: textarea
     id: actions
     attributes:
@@ -91,7 +68,6 @@ body:
         - , , 
     validations:
       required: true
-
   - type: textarea
     id: notes
     attributes:
