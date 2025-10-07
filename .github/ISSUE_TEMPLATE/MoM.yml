@@ -4,6 +4,7 @@ assignees: ["Keradin"]
 labels: []
 projects: ["ORG/Development"]
 title: "MoM: [Date or Topic]"
+type: "Minutes of meeting"
 
 body:
   - type: markdown
@@ -16,8 +17,8 @@ body:
     id: date
     attributes:
       label: Meeting Date
-      description: "Date of the meeting (YYYY-MM-DD)"
-      placeholder: "2025-mm-dd"
+      description: "Date of the meeting"
+      value: "2025-mm-dd"
     validations:
       required: true
 
@@ -26,7 +27,7 @@ body:
     attributes:
       label: Meeting Time
       description: "Start - End time and time zone"
-      placeholder: "11:00 – 12:30 EET"
+      value: "11:00 – 12:30 EET"
 
   - type: input
     id: location
