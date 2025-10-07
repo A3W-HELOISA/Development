@@ -1,8 +1,9 @@
 name: "Minutes of Meeting (MoM)"
 description: "Document the details, decisions, and action items from a meeting"
+assignees: ["keradin"]
+labels: []
+projects: ["ORG/Development"]
 title: "MoM: [Date or Topic]"
-labels: ["Meeting", "Minutes"]
-projects: ["ORG/Project-Management"]
 
 body:
   - type: markdown
@@ -15,8 +16,8 @@ body:
     id: date
     attributes:
       label: Meeting Date
-      description: "Specify the date of the meeting (YYYY-MM-DD)"
-      placeholder: "2025-10-07"
+      description: "Date of the meeting (YYYY-MM-DD)"
+      placeholder: "2025-mm-dd"
     validations:
       required: true
 
@@ -24,7 +25,7 @@ body:
     id: time
     attributes:
       label: Meeting Time
-      description: "Start time and time zone"
+      description: "Start - End time and time zone"
       placeholder: "11:00 – 12:30 EET"
 
   - type: input
@@ -32,14 +33,14 @@ body:
     attributes:
       label: Location / Platform
       description: "Specify the meeting location or online platform"
-      placeholder: "MS Teams / ESA HQ / Athens Office"
+      value: "Google Meet / MS Teams / ESA HQ / Athens Office"
 
   - type: textarea
     id: attendees
     attributes:
       label: Attendees
       description: "List all participants and their affiliations"
-      placeholder: |
+      value: |
         - Maria Kremezi
         - Kosta Vlachos
         - Stelios Kossieris
@@ -53,11 +54,16 @@ body:
     attributes:
       label: Agenda
       description: "List the key topics covered in the meeting"
-      placeholder: |
-        1. Review of last meeting actions  
-        2. Update on Water Quality Module  
-        3. Next milestone deliverables  
-        4. Open issues and planning
+      value: |
+        - Review of last meeting action items
+        - Update on E.O. modules
+        - Update on development modules 
+        - Update on integration status
+        - ESA requests
+        - A1.1 data update
+        - A1.2 data update
+        - A2 data update
+        - Planet data update
 
   - type: textarea
     id: discussion
@@ -73,17 +79,15 @@ body:
       label: Key Decisions
       description: "Document all major decisions or agreements made during the meeting"
       placeholder: |
-        - Decision 1: 
-        - Decision 2: 
+        - 
 
   - type: textarea
     id: actions
     attributes:
       label: Action Items
-      description: "List all actions, responsible persons, and deadlines"
+      description: "Action, Responsible, Deadline"
       placeholder: |
-        Action, Responsible, Deadline
-         , , 
+        - , , 
     validations:
       required: true
 
