@@ -1,0 +1,114 @@
+name: "Minutes of Meeting (MoM)"
+description: "Document the details, decisions, and action items from a meeting"
+title: "MoM: [Date or Topic]"
+labels: ["Meeting", "Minutes"]
+projects: ["ORG/Project-Management"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🗓️ Minutes of Meeting (MoM)
+        Please fill in all relevant fields below to ensure the meeting is properly documented.
+
+  - type: input
+    id: date
+    attributes:
+      label: Meeting Date
+      description: "Specify the date of the meeting (YYYY-MM-DD)"
+      placeholder: "2025-10-07"
+    validations:
+      required: true
+
+  - type: input
+    id: time
+    attributes:
+      label: Meeting Time
+      description: "Start time and time zone"
+      placeholder: "10:00 – 11:30 EET"
+
+  - type: input
+    id: location
+    attributes:
+      label: Location / Platform
+      description: "Specify the meeting location or online platform"
+      placeholder: "MS Teams / ESA HQ / Athens Office"
+
+  - type: textarea
+    id: attendees
+    attributes:
+      label: Attendees
+      description: "List all participants and their affiliations"
+      placeholder: |
+        - John Doe (HELOISA QA Lead)
+        - Maria Papadopoulou (ESA EOEPCA)
+        - Nikos Dimitriou (Project Manager)
+    validations:
+      required: true
+
+  - type: textarea
+    id: agenda
+    attributes:
+      label: Agenda
+      description: "List the key topics covered in the meeting"
+      placeholder: |
+        1. Review of last meeting actions  
+        2. Update on Water Quality Module  
+        3. Next milestone deliverables  
+        4. Open issues and planning
+
+  - type: textarea
+    id: discussion
+    attributes:
+      label: Discussion Summary
+      description: "Summarize the discussion points, decisions made, and rationales"
+      placeholder: |
+        - The QA team confirmed validation plan for Marine SST data.  
+        - Agreed to include a new AI-based water turbidity indicator.  
+        - Pending action: finalize metadata schema updates by next week.
+
+  - type: textarea
+    id: decisions
+    attributes:
+      label: Key Decisions
+      description: "Document all major decisions or agreements made during the meeting"
+      placeholder: |
+        - Decision 1: Approve new spatial resolution for coastal water extent (5m).  
+        - Decision 2: Implement real-time alerting for flood monitoring.
+
+  - type: textarea
+    id: actions
+    attributes:
+      label: Action Items
+      description: "List all actions, responsible persons, and deadlines"
+      placeholder: |
+        | Action | Responsible | Deadline |
+        |--------|--------------|-----------|
+        | Update the WQ dataset validation scripts | Alex P. | 2025-10-15 |
+        | Review EOEPCA integration plan | Elena K. | 2025-10-18 |
+    validations:
+      required: true
+
+  - type: textarea
+    id: followup
+    attributes:
+      label: Follow-up / Next Steps
+      description: "Outline what will be done before the next meeting"
+      placeholder: |
+        - Review the new WQ module results  
+        - Schedule next QA validation session  
+        - Prepare slides for ESA progress review
+
+  - type: input
+    id: next_meeting
+    attributes:
+      label: Next Meeting (Date)
+      description: "If known, specify date of next meeting"
+      placeholder: "2025-10-21"
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional Notes
+      description: "Add any supporting remarks, files discussed, or follow-up topics"
+      placeholder: "Add any additional information here..."
