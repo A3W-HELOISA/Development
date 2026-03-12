@@ -116,13 +116,13 @@ find_one() {
   echo "$path"
 }
 
-SRC_MUDDY="$(find_one 'workflow_ocean_colour.cwl')"
+SRC_MUDDY="$(find_one 'workflow.cwl')"
 SRC_INPUTS="$(find_one 'inputs.yml')"
 
 # Rewrite dockerPull line(s) in reference_muddy.cwl
 log "Rewriting dockerPull line(s) in workflow_ocean_colour.cwl…"
 before_count=$(grep -Fxc "$REWRITE_FROM" "$SRC_MUDDY" || true)
-MODIFIED_CWL="$WORKDIR/workflow_ocean_colour.modified.cwl"
+MODIFIED_CWL="$WORKDIR/workflow.modified.cwl"
 # Use '#' as sed delimiter (safe for URLs), and replace all occurrences
 sed -e "s#${REWRITE_FROM//\#/\\#}#${REWRITE_TO//\#/\\#}#g" "$SRC_MUDDY" > "$MODIFIED_CWL"
 after_count=$(grep -Fxc "$REWRITE_FROM" "$MODIFIED_CWL" || true)

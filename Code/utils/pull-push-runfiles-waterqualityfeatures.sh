@@ -13,7 +13,7 @@ QUIET_GIT=--quiet
 
 # Replacement defaults
 REWRITE_FROM='dockerPull: ghcr.io/cdxi-solutions/hydroscanimg:bin'
-REWRITE_TO='dockerPull: "ghcr.io/hellenicspacecenter/water-monitoring-integration-tests/waterqualityfeatures-service:latest"'
+REWRITE_TO='dockerPull: "ghcr.io/hellenicspacecenter/water-monitoring-integration-tests/waterqualityfeatures-service:1"'
 
 usage() {
   cat <<EOF

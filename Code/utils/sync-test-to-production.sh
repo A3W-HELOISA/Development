@@ -38,6 +38,11 @@ safe_rmdir() {
   esac
 }
 
+prepare_prod_checkout_no_lfs_smudge() {
+  # Prevent git checkout/reset from trying to download LFS objects
+  export GIT_LFS_SKIP_SMUDGE=1
+}
+
 # Check if a directory is a git repo and its origin url equals the expected url
 is_repo_with_origin() {
   local dir="$1"; shift
@@ -85,6 +90,7 @@ if [[ "$GIT_LFS_PULL" == "true" ]]; then
   fi
 fi
 
+prepare_prod_checkout_no_lfs_smudge
 # Prepare prod checkout
 if is_repo_with_origin "$PROD_DIR" "$PROD_REPO"; then
   info "Reusing existing prod checkout at $PROD_DIR"
