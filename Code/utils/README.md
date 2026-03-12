@@ -2,8 +2,7 @@
 ## Pull, Tag, Push docker image
 These are the steps to pull the docker image from your organization docker image repository, tag it properly, and push it to the HSC ghcr.io docker image repository.
 
-1. Make sure that you have set the proper git account in your git config. Test this by running
-`git config user.email`
+1. Make sure that the configurations of your Git gave access to the Github repository of the HSC.
 
 2. Parametrize the arguments and Run the following script.
 ```bash
