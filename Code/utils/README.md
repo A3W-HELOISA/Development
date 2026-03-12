@@ -1,15 +1,31 @@
-# Quick How-to
+# Development / Integration standard procedure
+## Pull, Tag, Push docker image
+These are the steps to pull the docker image from your organization docker image repository, tag it properly, and push it to the HSC ghcr.io docker image repository.
+
 1. Make sure that you have set the proper git account in your git config. Test this by running
 `git config user.email`
 
 2. Parametrize the arguments and Run the following script.
 ```bash
-bash pull-tag-push.sh --from ghcr.io/cdxi-solutions/muddy-service:bin --to ghcr.io/hellenicspacecenter/water-monitoring-integration-tests/muddy-service:latest
+bash pull-tag-push.sh --from ghcr.io/cdxi-solutions/muddy-service:bin --to ghcr.io/hellenicspacecenter/water-monitoring-integration-tests/muddy-service:1.0.1
 ```
 - The `--from ghcr.io/cdxi-solutions/muddy-service:bin` represents the docker image that is uploaded in your organization's ghcr.io where you're doing the actual development.  
-- The `--to ghcr.io/hellenicspacecenter/water-monitoring-integration-tests/muddy-service:latest` represents the new tag of the above docker image which will need to be pushed to the HSC repo. **NOTE**: The tag of this image MUST be `latest`
+- The `--to ghcr.io/hellenicspacecenter/water-monitoring-integration-tests/muddy-service:1.0.1` represents the new tag of the above docker image which will need to be pushed to the HSC repo.
+## Synchronize source code
+This script is to synchronize the `main` branch of your repository which should be production-ready, with the repository of the HSC.  
+1. Modify _sync-test-to-production.sh_ script, specifically the following variables:  
+- `INTERNAL_REPO`: The repository with the source code that you work on at you premises.  
+- `INTERNAL_BRANCH`: The production-ready branch of the repository at your premises (default to `main`).  
+- `PROD_REPO`: The repository of the HSC that will store the source code to be production-ready and delivered by the end of the project.  
+- `PROD_BRANCH`: The production-ready branch of the repository at the HSC (default to `main`).
 
-3. Parametrize, Rename and Run the following script to update the CWL and YAML files in the HSC's repo.
+2. Run the following:  
+```bash
+bash sync-test-to-production.sh
+```
+## Retrieve CWL and YAML and push (deprecated)
+
+1. Parametrize, Rename and Run the following script to update the CWL and YAML files in the HSC's repo.
 ```bash
 bash pull-push-runfiles-muddy.sh
 ```
